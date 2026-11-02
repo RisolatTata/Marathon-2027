@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All locations – Copenhagen Marathon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="screen">
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <a class="logo" href="index.html">
+      <img src="images/logo.png" alt="" width="48" height="48">
+      Copenhagen Marathon
+    </a>
+
+    <div class="header-right">
+      <div class="info">
+        <span class="info-label">Weather</span>
+        <span class="info-value"><img src="images/icon-sun.svg" alt=""> 17°C</span>
+      </div>
+      <div class="info">
+        <span class="info-label">Time left</span>
+        <span class="info-value">2h 30min</span>
+      </div>
+      <a class="square-button" href="index.html">
+        <img src="images/icon-home.svg" alt="Home">
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ========== BODY ========== -->
+  <main class="body">
+
+    <!-- ----- MAP (left) ----- -->
+    <section class="map">
+      <!-- everything inside "map-content" gets bigger/smaller on zoom -->
+      <div class="map-content">
+        <!-- streets + route (one picture) -->
+        <img class="map-drawing" src="images/map-all-locations.svg" alt="">
+
+        <!-- you are here -->
+        <div class="you" style="left: 407px; top: 337px;"></div>
+
+        <!-- pins: left / top = where the pin stands on the map. Click = open that place -->
+        <a class="pin" href="water-station.html" style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin" href="water-station.html" style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin" href="toilets.html"       style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
+        <a class="pin" href="toilets.html"       style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
+        <a class="pin" href="equipment.html"     style="left: 640px; top: 260px;"><img src="images/icon-shoe.svg"    alt="Equipment"></a>
+        <a class="pin" href="first-aid.html"     style="left: 150px; top: 470px;"><img src="images/icon-aid.svg"     alt="First aid"></a>
+      </div>
+
+      <!-- zoom buttons (they work through js/map.js) -->
+      <div class="zoom">
+        <button class="square-button" id="zoom-in">+</button>
+        <button class="square-button" id="zoom-out">−</button>
+        <button class="square-button" id="recenter">◎</button>
+      </div>
+
+      <!-- switch is ON → click goes back to the previous screen -->
+      <a class="toggle go-back" href="equipment.html">
+        <span class="switch on"></span>
+        Show all locations
+      </a>
+    </section>
+
+
+    <!-- ----- PANEL (right) ----- -->
+    <aside class="panel">
+
+      <a class="button back go-back" href="index.html">
+        <img src="images/icon-back.svg" alt=""> Back
+      </a>
+
+      <div class="heading">
+        <h1>All locations</h1>
+        <p class="small">Tap a place to get directions</p>
+      </div>
+
+      <ul class="list">
+        <li>
+          <a class="row" href="water-station.html">
+            <span class="circle"><img src="images/icon-droplet.svg" alt=""></span>
+            <span class="name">Water station</span>
+            <span class="distance">2 km →</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="toilets.html">
+            <span class="circle"><img src="images/icon-toilet.svg" alt=""></span>
+            <span class="name">Toilets</span>
+            <span class="distance">1 km →</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="equipment.html">
+            <span class="circle"><img src="images/icon-shoe.svg" alt=""></span>
+            <span class="name">Equipment</span>
+            <span class="distance">3 km →</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="first-aid.html">
+            <span class="circle"><img src="images/icon-aid.svg" alt=""></span>
+            <span class="name">First aid</span>
+            <span class="distance">5 m →</span>
+          </a>
+        </li>
+      </ul>
+
+    </aside>
+
+  </main>
+</div>
+
+<script src="js/map.js"></script>
+</body>
+</html>
