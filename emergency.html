@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Copenhagen Marathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylefirstaid.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2>
+    </div>
+
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value">17°C</p>
+      </div>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value">2h 30min</p>
+      </div>
+      <a href="Home.html" class="home-button">⌂</a>
+    </div>
+  </header>
+
+  <div class="screen">
+
+    <div class="map">
+      <iframe src="https://maps.google.com/maps?ll=55.7026,12.5718&z=15&output=embed"></iframe>
+
+      <label class="map-button">
+        <input type="checkbox">
+        Show all locations
+      </label>
+    </div>
+
+    <div class="panel">
+      <a href="firstaid-locations.html" class="back-button">← Back</a>
+
+      <h1 class="title">First aid</h1>
+      <p class="distance">5 m left</p>
+
+      <div class="details">
+        <p class="details-label">DETAILS</p>
+        <p class="details-text">Medical tent right next to you</p>
+      </div>
+
+      <div class="emergency">
+        <p class="emergency-label">IN AN EMERGENCY</p>
+
+        <div class="emergency-row">
+          <div class="emergency-icon">☎</div>
+          <p class="emergency-call">call <span class="emergency-number">112</span></p>
+        </div>
+
+        <p class="emergency-info">Use your own phone. Free, 24/7.<br>Not urgent? Medical helpline 1813.</p>
+      </div>
+
+      <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://copenhagenmarathon.dk" alt="QR code">
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
