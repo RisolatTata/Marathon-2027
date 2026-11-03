@@ -199,6 +199,21 @@ a.pin:hover {
   display: flex;
 }
 
+/* you can grab the map with the mouse and move it (js/map.js) */
+.map {
+  cursor: grab;
+  touch-action: none;              /* on a touch screen: finger moves the map */
+  user-select: none;
+}
+
+.map.dragging {
+  cursor: grabbing;
+}
+
+.map.dragging .map-content {
+  transition: none;                /* follow the mouse right away */
+}
+
 /* zoom buttons bottom right */
 .zoom {
   position: absolute;
@@ -219,6 +234,12 @@ a.pin:hover {
   font: 600 26px "Inter", Arial, sans-serif;
   color: var(--dark);
   cursor: pointer;
+}
+
+/* "+" or "−" can't be used any more → greyed out */
+.zoom button:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* "Show all locations" switch bottom left */
