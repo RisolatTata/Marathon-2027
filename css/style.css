@@ -52,12 +52,7 @@ img {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  /* yellow background with soft pink spots */
-  background:
-    radial-gradient(ellipse 30% 40% at 100% 0%,   #f6a6d4 0%, transparent 100%),
-    radial-gradient(ellipse 25% 35% at 55% 100%,  #f6a6d4 0%, transparent 100%),
-    radial-gradient(ellipse 20% 30% at 0% 85%,    #f6a6d4 0%, transparent 100%),
-    #f5d76e;
+  background: #f5d76e url("../assets/Background.png") center / cover;
 }
 
 

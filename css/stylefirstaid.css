@@ -2,8 +2,9 @@ body {
   margin: 0;
   font-family: Inter, Arial, sans-serif;
   background-color: #e8d35c;
-  background-image: url("assets/firstaidlocationbackground.png");
+  background-image: url("../assets/Background.png");
   background-size: cover;
+  min-height: 100vh;
 }
 h1, h2, p {
   margin: 0;
@@ -24,12 +25,15 @@ header {
   align-items: center;
   gap: 10px;
 }
+.logo {
+  gap: 0;
+}
 .info {
   gap: 20px;
 }
 .logo img {
-  width: 34px;
-  height: 34px;
+  width: 48px;
+  height: 48px;
 }
 .logo h2 {
   font-size: 17px;

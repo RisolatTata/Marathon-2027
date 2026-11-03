@@ -1,4 +1,10 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #e8d35c url("../assets/Background.png") center / cover;
+}
 header {
+  flex-shrink: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,15 +18,19 @@ header p, header h2 {
 }
 header .logo, header .info {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
+}
+header .logo {
+  gap: 0;
 }
 header .info {
   gap: 20px;
 }
 header .logo img {
-  width: 34px;
-  height: 34px;
+  width: 48px;
+  height: 48px;
 }
 header .logo h2 {
   font-size: 17px;
