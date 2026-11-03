@@ -1,57 +1,39 @@
 /* =========================================================
-   Copenhagen Marathon – ONE stylesheet for all pages
-   (except Home.html, that one has its own)
-
-   How it is split:
-   - Parts 1 to 5 are used by EVERY page.
-   - Part 6 is only for pages with <body class="map-page">
-     → equipment.html, all-locations.html, Menu.html, toilet.html, water.html
-       (Menu, toilet and water only have the map, no panel)
-   - Part 7 is only for pages with <body class="firstaid-page">
-     → firstaid-locations.html, emergency.html
-   Both page types use the same names (.screen, .map, .panel ...)
-   for different things, that's why they start with the body class...;
+   Copenhagen Marathon – one stylesheet for all pages
+   (except Home.html)
    ========================================================= */
 
 
-/* ---------- 1. COLORS (change here = changes everywhere) ---------- */
+/* ---------- COLORS ---------- */
 :root {
-  --dark:        #2b0f3a;   /* main text, pins, icons */
-  --text:        #1f1f2e;   /* text in header + first aid pages */
-  --muted:       #5a3a5e;   /* small grey-purple text */
-  --grey:        #777777;   /* small labels (Weather, Time left, DETAILS) */
-  --yellow:      #ffd84a;   /* "you are here" dot */
-  --cream:       #fbf3d6;   /* header + first aid cards */
-  --map:         #f3f0e8;   /* map background */
-  --white:       #ffffff;
-
-  --green:       #2e9e5b;   /* Available */
-  --orange:      #e0a100;   /* Low stock */
-  --red:         #d62839;   /* Out of stock */
-  --emergency:   #c0392b;   /* 112 / emergency box */
-
-  --border:      rgba(43, 15, 58, 0.15);
-  --shadow:      0 2px 8px rgba(43, 15, 58, 0.12);
+  --dark:   #2b0f3a;   /* text, pins, icons */
+  --muted:  #5a3a5e;   /* small text */
+  --yellow: #ffd84a;   /* "you are here" dot */
+  --cream:  #fbf3d6;   /* header + cards */
+  --map:    #f3f0e8;   /* map background */
+  --white:  #ffffff;
+  --green:  #2e9e5b;   /* Available + "Location sent" */
+  --orange: #e0a100;   /* Low stock */
+  --red:    #d62839;   /* Out of stock + emergency */
+  --border: rgba(43, 15, 58, 0.15);
+  --shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
 }
 
 
-/* ---------- 2. BASIC RESET + PAGE BACKGROUND ---------- */
-/* remove the browser's own margins/padding everywhere */
+/* ---------- BASICS ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* font + Background.png behind every page */
 body {
-  min-height: 100vh;
   font-family: "Inter", Arial, sans-serif;
   color: var(--dark);
-  background: #e8d35c url("../assets/Background.png") center / cover;
+  background: var(--yellow) url("../assets/Background.png") center / cover;
+  overflow: hidden;                 /* the page never scrolls */
 }
 
-/* links look like normal text */
 a {
   color: inherit;
   text-decoration: none;
@@ -61,23 +43,32 @@ img {
   display: block;
 }
 
-
-/* ---------- 3. HEADER (logo + weather + timer + home button) ---------- */
-/* the bar at the top */
-header {
-  flex-shrink: 0;
+/* the whole window: header on top, content below */
+.screen {
+  height: 100vh;
   display: flex;
-  justify-content: space-between;   /* logo left, info right */
-  align-items: center;
-  padding: 10px 40px;
-  background-color: var(--cream);
-  color: var(--text);
+  flex-direction: column;
 }
 
-/* logo picture + "Copenhagen Marathon" next to each other */
-header .logo {
+
+/* ---------- HEADER (the HTML is made by js/header.js) ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: var(--cream);
+}
+
+header .logo,
+header .info {
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+
+header .logo {
+  gap: 0;
 }
 
 header .logo img {
@@ -89,75 +80,52 @@ header .logo h2 {
   font-size: 17px;
 }
 
-/* weather, time left and home button next to each other */
-header .info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* small text "Weather" / "Time left" */
 header .label {
   font-size: 10px;
-  color: var(--grey);
+  color: var(--muted);
 }
 
-/* the temperature and the timer (filled in by js/header.js) */
 header .value {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
-/* the ⌂ button on the right */
 header .home-button {
   width: 36px;
   height: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
-  border: 1px solid #c9c9c9;
+  background: var(--white);
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 18px;
 }
 
 
-/* ---------- 4. BUTTONS ---------- */
-/* square white button (zoom +, −, ◎) */
-.square-button {
-  width: 56px;
-  height: 56px;
+/* ---------- CONTENT: map left + panel right ---------- */
+.body {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  font-family: inherit;
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--dark);
-  cursor: pointer;
-}
-
-/* normal white button with text (Back, Check other stations) */
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 600;
+  gap: 32px;
+  padding: 20px 40px 36px;
 }
 
 
-/* ---------- 5. MAP DRAWING + PINS (all map pages) ---------- */
-/* everything that zooms: drawing + pins + "you" dot
-   (always 808 x 660 like the drawing, kept in the middle of the map,
-   so on a small screen only the edges are cut off) */
+/* ---------- MAP ---------- */
+.map {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  background: var(--map);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* drawing + pins + "you" dot, 808 x 660, in the middle of the map
+   (js/map.js zooms this part) */
 .map-content {
   position: absolute;
   left: 50%;
@@ -165,19 +133,17 @@ header .home-button {
   width: 808px;
   height: 660px;
   margin: -330px 0 0 -404px;
-  transform-origin: center;        /* zoom around the middle (≈ "you are here") */
-  transition: transform 0.3s;      /* smooth zoom */
+  transition: transform 0.3s;
 }
 
-/* the drawing is bigger than 808 x 660: it has 300px extra land left/right
-   and 100px top/bottom, so a wide map box never shows empty edges */
+/* the drawing has 300px extra land left/right and 100px top/bottom */
 .map-drawing {
   position: absolute;
   left: -300px;
   top: -100px;
 }
 
-/* yellow "you are here" dot */
+/* yellow "you are here" dot with a pulsing ring */
 .you {
   position: absolute;
   width: 26px;
@@ -187,7 +153,6 @@ header .home-button {
   border-radius: 50%;
 }
 
-/* ring around the dot that keeps growing and fading (like a GPS signal) */
 .you::after {
   content: "";
   position: absolute;
@@ -198,18 +163,17 @@ header .home-button {
 }
 
 @keyframes pulse {
-  from { transform: scale(1);   opacity: 0.6; }
-  to   { transform: scale(2.6); opacity: 0; }
+  to { transform: scale(2.6); opacity: 0; }
 }
 
-/* dark round pin with an icon (white edge so it stands out on the map) */
+/* round pin with an icon, left/top are set in the HTML */
 .pin {
   position: absolute;
   width: 48px;
   height: 48px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background: var(--dark);
   border: 3px solid var(--white);
   border-radius: 50%;
@@ -217,19 +181,16 @@ header .home-button {
   transition: transform 0.2s;
 }
 
-/* pins you can click get a bit bigger under the mouse */
 a.pin:hover {
   transform: scale(1.12);
 }
 
-/* the selected pin is bigger */
 .pin.big {
   width: 60px;
   height: 60px;
 }
 
-/* extra pins (water, toilets, equipment) on the first aid map:
-   hidden, only visible when "Show all locations" is checked */
+/* "extra" pins only show when the "Show all locations" checkbox is on */
 .pin.extra {
   display: none;
 }
@@ -253,69 +214,36 @@ a.pin:hover {
   transition: none;                /* follow the mouse right away */
 }
 
-/* "+" or "−" can't be used any more → greyed out */
-.square-button:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-
-/* =========================================================
-   6. EQUIPMENT + ALL LOCATIONS  (<body class="map-page">)
-   ========================================================= */
-
-/* the page never scrolls */
-.map-page {
-  overflow: hidden;
-}
-
-/* the whole screen: header on top, body below, fills the window */
-.map-page .screen {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* map on the left + panel on the right */
-.map-page .body {
-  flex: 1;                       /* takes all the height under the header */
-  min-height: 0;
-  display: flex;
-  gap: 32px;
-  padding: 20px 40px 36px 40px;
-}
-
-/* --- map (left) --- */
-.map-page .map {
-  position: relative;            /* pins are placed inside it */
-  flex: 1;                       /* takes all the width next to the panel */
-  min-width: 0;
-  background: var(--map);
-  border: 1px solid rgba(43, 15, 58, 0.2);
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* zoom buttons bottom right (they work through js/map.js) */
-.map-page .zoom {
+/* zoom buttons bottom right */
+.zoom {
   position: absolute;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.map-page .zoom .square-button {
+.zoom button {
   width: 52px;
   height: 52px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
   box-shadow: var(--shadow);
+  font: 600 26px "Inter", Arial, sans-serif;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+/* "+" or "−" can't be used any more → greyed out */
+.zoom button:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* "Show all locations" switch bottom left */
-.map-page .toggle {
+.toggle {
   position: absolute;
   left: 20px;
   bottom: 20px;
@@ -330,17 +258,22 @@ a.pin:hover {
   box-shadow: var(--shadow);
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 }
 
-.map-page .switch {
+.toggle input {
+  display: none;
+}
+
+.switch {
   position: relative;
   width: 36px;
   height: 22px;
-  background: rgba(43, 15, 58, 0.2);   /* OFF = grey */
+  background: var(--border);
   border-radius: 11px;
 }
 
-.map-page .switch::after {             /* the white circle */
+.switch::after {
   content: "";
   position: absolute;
   top: 2px;
@@ -351,76 +284,77 @@ a.pin:hover {
   border-radius: 50%;
 }
 
-.map-page .switch.on {
-  background: var(--dark);             /* ON = dark */
-}
-
-.map-page .switch.on::after {
-  left: 16px;                          /* circle moves right */
-}
-
-/* the switch is a hidden checkbox: checked = ON */
-.map-page .toggle {
-  cursor: pointer;
-}
-
-.map-page .toggle input {
-  display: none;
-}
-
-.map-page .toggle input:checked + .switch {
+/* switch ON: by class "on" or by a checked checkbox */
+.switch.on,
+input:checked + .switch {
   background: var(--dark);
 }
 
-.map-page .toggle input:checked + .switch::after {
+.switch.on::after,
+input:checked + .switch::after {
   left: 16px;
 }
 
-/* --- panel (right) --- */
-.map-page .panel {
+
+/* ---------- PANEL (right) ---------- */
+.panel {
+  position: relative;
   width: 360px;
   flex-shrink: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* Back button, pushed to the right */
-.map-page .back {
+/* low screen: less space between the parts, so they don't touch the QR code */
+@media (max-height: 700px) {
+  .panel {
+    gap: 14px;
+  }
+}
+
+/* white button with text */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.back {
   align-self: flex-end;
-  padding: 11px 18px 11px 14px;
-  font-weight: 500;
 }
 
-/* big title + small text under it ("Equipment / 3 km left") */
-.map-page .heading h1 {
+/* big title + small text under it */
+.heading h1 {
   font-size: 40px;
-  font-weight: 700;
 }
 
-.map-page .heading p {
+.heading p {
   margin-top: 6px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--muted);
 }
 
-.map-page .heading p.small {
-  font-size: 18px;
-}
-
-/* --- equipment: "In stock at this station" card --- */
-.map-page .stock {
+/* card with a small title (stock, details, emergency) */
+.card {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--cream);
   border-radius: 16px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.map-page .stock h2 {
+.card h2 {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -428,16 +362,32 @@ a.pin:hover {
   color: var(--muted);
 }
 
-/* one line: name left, status right */
-.map-page .stock-item {
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-  font-weight: 500;
+/* QR code always at the bottom right, level with the bottom of the map */
+.qr {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-/* Available / Low stock / Out of stock with a colored dot */
-.map-page .status {
+/* 120px, but smaller on a low screen so it stays in view */
+.qr img {
+  width: min(120px, 15vh);
+  height: min(120px, 15vh);
+}
+
+
+/* ---------- EQUIPMENT: stock list ---------- */
+.stock-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* status with a colored dot in front */
+.status {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -445,242 +395,181 @@ a.pin:hover {
   font-weight: 600;
 }
 
-.map-page .status::before {
+.status::before {
   content: "";
   width: 10px;
   height: 10px;
+  background: currentColor;
   border-radius: 50%;
-  background: currentColor;          /* same color as the text */
 }
 
-.map-page .available { color: var(--green); }
-.map-page .low       { color: var(--orange); }
-.map-page .out       { color: var(--red); }
+.available { color: var(--green); }
+.low       { color: var(--orange); }
+.out       { color: var(--red); }
 
-.map-page .stock .button {
-  align-self: flex-start;
-}
 
-/* QR code at the bottom right of the panel */
-.map-page .qr {
-  align-self: flex-end;
-  margin-top: auto;                  /* push the QR to the bottom */
-  padding: 10px;
-  background: var(--white);
-  border: 1px solid rgba(43, 15, 58, 0.2);
-  border-radius: 12px;
-}
-
-/* --- all locations: list of places --- */
-.map-page .list {
+/* ---------- ALL LOCATIONS: list ---------- */
+.list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* one white row: icon, name, distance */
-.map-page .row {
+.row {
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 12px 14px;
   background: var(--white);
-  border: 1px solid rgba(43, 15, 58, 0.12);
+  border: 1px solid var(--border);
   border-radius: 14px;
-}
-
-.map-page .row .circle {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--dark);
-  border-radius: 50%;
-}
-
-.map-page .row .name {
-  flex: 1;                           /* takes free space → distance goes right */
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.map-page .row .distance {
   font-size: 15px;
   font-weight: 500;
   color: var(--muted);
 }
 
-
-/* =========================================================
-   7. FIRST AID + EMERGENCY  (<body class="firstaid-page">)
-   ========================================================= */
-
-/* map on the left + panel on the right */
-.firstaid-page .screen {
-  display: flex;
-  gap: 30px;
-  padding: 30px;
-  color: var(--text);
-}
-
-/* --- map (left) --- */
-.firstaid-page .map {
-  position: relative;
-  flex: 2;
-  height: 80vh;
-  background-color: var(--map);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-/* "Show all locations" checkbox bottom left */
-.firstaid-page .map-button {
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background-color: var(--white);
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* --- panel (right) --- */
-.firstaid-page .panel {
-  position: relative;
-  flex: 1;
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Back button, pushed to the right */
-.firstaid-page .back-button {
-  align-self: flex-end;
-  padding: 6px 14px;
-  background-color: var(--white);
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* "First aid" + "5 m left" */
-.firstaid-page .title {
-  margin-top: 10px;
-  font-size: 28px;
-}
-
-.firstaid-page .distance {
-  margin: 4px 0 16px;
-  font-size: 15px;
-}
-
-/* cream card with DETAILS */
-.firstaid-page .details {
-  margin-bottom: 14px;
-  padding: 12px 16px;
-  background-color: var(--cream);
-  border-radius: 10px;
-}
-
-.firstaid-page .details-label {
-  margin-bottom: 4px;
-  font-size: 10px;
-  color: var(--grey);
-}
-
-.firstaid-page .details-text {
-  font-size: 15px;
-}
-
-/* green "Location sent to medics" button (firstaid-locations.html) */
-.firstaid-page .status-link {
-  color: var(--white);
-}
-
-.firstaid-page .status {
-  padding: 16px;
-  background-color: #5b9a6b;
-  border-radius: 10px;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* small bold text under the green button */
-.firstaid-page .help-text {
-  margin-top: 12px;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-/* QR code at the bottom right of the panel */
-.firstaid-page .qr {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 8px;
-  background-color: var(--white);
-  border-radius: 10px;
-}
-
-.firstaid-page .qr img {
-  width: 80px;
-  height: 80px;
-}
-
-/* --- emergency.html: "call 112" box --- */
-.firstaid-page .emergency {
-  padding: 16px;
-  background-color: var(--cream);
-  border-left: 4px solid var(--emergency);
-  border-radius: 10px;
-}
-
-.firstaid-page .emergency-label {
-  margin-bottom: 10px;
-  font-size: 10px;
-  font-weight: bold;
-  color: var(--emergency);
-}
-
-/* phone icon + "call 112" next to each other */
-.firstaid-page .emergency-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.firstaid-page .emergency-icon {
+.circle {
   width: 44px;
   height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
-  border: 2px solid var(--emergency);
+  background: var(--dark);
   border-radius: 50%;
-  color: var(--emergency);
+}
+
+.name {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+
+/* ---------- FIRST AID ---------- */
+/* green "Location sent to medics" button */
+.sent {
+  padding: 16px;
+  background: var(--green);
+  border-radius: 12px;
+  color: var(--white);
+  font-weight: 700;
+  text-align: center;
+}
+
+.note {
+  margin-top: -12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* ---------- EMERGENCY: "call 112" card ---------- */
+.emergency {
+  border-left: 4px solid var(--red);
+}
+
+.emergency h2 {
+  color: var(--red);
+}
+
+.call {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.call-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--white);
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  color: var(--red);
   font-size: 22px;
 }
 
-.firstaid-page .emergency-call {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.firstaid-page .emergency-number {
-  margin-left: 4px;
+.call strong {
   font-size: 32px;
-  color: var(--emergency);
+  color: var(--red);
 }
 
-.firstaid-page .emergency-info {
-  margin-top: 12px;
-  font-size: 11px;
-  color: #555;
+.emergency p:last-child {
+  font-size: 12px;
+  color: var(--muted);
+}
+/*Home page*/
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(48px, 12vh, 120px);
+  padding: 32px 20px 96px;
+}
+ 
+.hero__logo { margin: 0; }
+.hero__logo img { display: block; max-width: min(420px, 80vw); height: auto; }
+ 
+/* ---------- Buttons ---------- */
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+ 
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(43,20,66,.25); }
+.btn:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; }
+ 
+.btn__icon {
+  width: 16px; height: 16px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+ 
+.btn--primary   { background: var(--plum);  color: var(--yellow); min-width: 150px; justify-content: center; }
+.btn--secondary { background: var(--white); color: var(--ink);    min-width: 150px; justify-content: center; }
+ 
+/* ---------- Language toggle ---------- */
+.lang {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.7);
+}
+ 
+.lang__btn {
+  border: 0;
+  background: transparent;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.lang__btn.is-active { background: var(--plum); color: var(--white); }
+.lang__btn:focus-visible { outline: 2px solid var(--plum); outline-offset: 2px; }
+ 
+@media (max-width: 480px) {
+  .stats { gap: 12px; }
+  .brand__name { display: none; }
 }

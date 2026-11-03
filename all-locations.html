@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>All locations – Copenhagen Marathon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All locations - Copenhagen Marathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="map-page">
+<body>
 <div class="screen">
-
   <header>
     <div class="logo">
       <img src="assets/Logo.png" alt="Logo">
@@ -39,65 +38,35 @@
 
         <a class="pin" href="water.html" style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
         <a class="pin" href="water.html" style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
-        <a class="pin" href="toilet.html"       style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
-        <a class="pin" href="toilet.html"       style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
-        <a class="pin" href="equipment.html"     style="left: 640px; top: 260px;"><img src="images/icon-shoe.svg"    alt="Equipment"></a>
-        <a class="pin" href="firstaid-locations.html"     style="left: 150px; top: 470px;"><img src="images/icon-aid.svg"     alt="First aid"></a>
+        <a class="pin" href="toilet.html" style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin" href="toilet.html" style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin" href="equipment.html" style="left: 640px; top: 260px;"><img src="images/icon-shoe.svg" alt="Equipment"></a>
+        <a class="pin" href="firstaid-locations.html" style="left: 150px; top: 470px;"><img src="images/icon-aid.svg" alt="First aid"></a>
       </div>
 
       <div class="zoom">
-        <button class="square-button" id="zoom-in"  title="Zoom in">+</button>
-        <button class="square-button" id="zoom-out" title="Zoom out">−</button>
-        <button class="square-button" id="recenter" title="Back to my location">◎</button>
+        <button id="zoom-in"  title="Zoom in">+</button>
+        <button id="zoom-out" title="Zoom out">−</button>
+        <button id="recenter" title="Back to my location">◎</button>
       </div>
     </section>
 
-
     <!-- PANEL (right)-->
     <aside class="panel">
-
-      <a class="button back go-back" href="Menu.html">
-        <img src="images/icon-back.svg" alt=""> Back
-      </a>
+      <a class="button back go-back" href="Menu.html"><img src="images/icon-back.svg" alt=""> Back</a>
 
       <div class="heading">
         <h1>All locations</h1>
-        <p class="small">Tap a place to get directions</p>
+        <p>Tap a place to get directions</p>
       </div>
 
       <ul class="list">
-        <li>
-          <a class="row" href="water.html">
-            <span class="circle"><img src="images/icon-droplet.svg" alt=""></span>
-            <span class="name">Water station</span>
-            <span class="distance">2 km →</span>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="toilet.html">
-            <span class="circle"><img src="images/icon-toilet.svg" alt=""></span>
-            <span class="name">Toilets</span>
-            <span class="distance">1 km →</span>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="equipment.html">
-            <span class="circle"><img src="images/icon-shoe.svg" alt=""></span>
-            <span class="name">Equipment</span>
-            <span class="distance">3 km →</span>
-          </a>
-        </li>
-        <li>
-          <a class="row" href="firstaid-locations.html">
-            <span class="circle"><img src="images/icon-aid.svg" alt=""></span>
-            <span class="name">First aid</span>
-            <span class="distance">5 m →</span>
-          </a>
-        </li>
+        <li><a class="row" href="water.html"><span class="circle"><img src="images/icon-droplet.svg" alt=""></span><span class="name">Water station</span>2 km →</a></li>
+        <li><a class="row" href="toilet.html"><span class="circle"><img src="images/icon-toilet.svg" alt=""></span><span class="name">Toilets</span>1 km →</a></li>
+        <li><a class="row" href="equipment.html"><span class="circle"><img src="images/icon-shoe.svg" alt=""></span><span class="name">Equipment</span>3 km →</a></li>
+        <li><a class="row" href="firstaid-locations.html"><span class="circle"><img src="images/icon-aid.svg" alt=""></span><span class="name">First aid</span>5 m →</a></li>
       </ul>
-
     </aside>
-
   </main>
 </div>
 
