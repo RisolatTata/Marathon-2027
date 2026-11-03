@@ -7,29 +7,27 @@
   <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-  <div class="page">
 
-    <header class="topbar">
-      <a class="brand" href="/">
-        <img class="brand__icon" src="assets/Logo.png" alt="" width="24" height="24">
-        <span class="brand__name">Copenhagen Marathon</span>
-      </a>
-
-      <div class="stats">
-        <div class="stat">
-          <span class="stat__label">Weather</span>
-          <span class="stat__value">☀ 17°C</span>
-        </div>
-        <div class="stat">
-          <span class="stat__label">Time left</span>
-          <span class="stat__value">2h 30min</span>
-        </div>
+    <header>
+      <div class="logo">
+        <img src="assets/Logo.png" alt="Logo">
+        <h2>Copenhagen Marathon</h2> <!--Part of logo, do not change-->
       </div>
+
+      <div class="info">
+        <div class="info-block">
+          <p class="label">Weather</p>
+          <p class="value" id="weather">☀ 17°C</p>
+        </div>
+        <div class="info-block">
+          <p class="label">Time left</p>
+          <p class="value">2h 30min</p>
+        </div>
     </header>
 
     <main class="hero">
       <h1 class="hero__logo">
-        <img src="assets/Logo.png" alt="Copenhagen Marathon" width="420" height="90">
+        <img src="assets/FullLogo.png" alt="Copenhagen Marathon" width="420" height="90">
       </h1>
 
       <div class="actions">
@@ -50,6 +48,7 @@
     </div>
 
   </div>
+  <script src="js/header.js"></script>
 =======
 </body>
 </html>
