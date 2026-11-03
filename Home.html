@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--Meta Data-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS Link-->
-    <link rel="stylesheet" href="mystyle.css">
-    <!--Title & Favicon -->
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copenhagen Marathon</title>
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+  <div class="page">
 
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img class="brand__icon" src="assets/Logo.png" alt="" width="24" height="24">
+        <span class="brand__name">Copenhagen Marathon</span>
+      </a>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__label">Weather</span>
+          <span class="stat__value">☀ 17°C</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Time left</span>
+          <span class="stat__value">2h 30min</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="hero">
+      <h1 class="hero__logo">
+        <img src="assets/Logo.png" alt="Copenhagen Marathon" width="420" height="90">
+      </h1>
+
+      <div class="actions">
+        <a class="btn btn--primary" href="#location">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Find location
+        </a>
+        <a class="btn btn--secondary" href="#map">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Open map
+        </a>
+      </div>
+    </main>
+
+    <div class="lang" role="group" aria-label="Language">
+      <button class="lang__btn is-active" type="button" aria-pressed="true">EN</button>
+      <button class="lang__btn" type="button" aria-pressed="false">DA</button>
+    </div>
+
+  </div>
+=======
 </body>
 </html>
