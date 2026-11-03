@@ -89,9 +89,8 @@
   <path d="M60 560C220 560 260 330 420 350C580 370 660 470 760 130" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
   <path d="M60 560C220 560 260 330 420 350C580 370 660 470 760 130" stroke="#EBC9DD" stroke-width="8" stroke-linecap="round"/>
 
-  <!-- part of the route you already ran + dashed line to the equipment station -->
+  <!-- part of the route you already ran -->
   <path d="M60 560C220 560 260 330 420 350" stroke="#E8337A" stroke-width="8" stroke-linecap="round"/>
-  <path d="M420 350L705 330" stroke="#2B0F3A" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 8"/>
 
   <!-- km signs on the route -->
   <g font-family="Arial, sans-serif" font-size="9" font-weight="700" text-anchor="middle">
