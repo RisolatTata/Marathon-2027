@@ -33,6 +33,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   color: var(--dark);
   background: #d9d9d9;
+  overflow: hidden;                /* the page never scrolls */
 }
 
 a {
@@ -268,7 +269,7 @@ img {
 .panel {
   width: 360px;
   flex-shrink: 0;
-  overflow-y: auto;              /* very small screen → only the panel scrolls */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 24px;
