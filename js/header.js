@@ -1,23 +1,3 @@
-// Header: the same on every page, so it is written here only once
-document.querySelector("header").innerHTML = `
-  <div class="logo">
-    <img src="assets/Logo.png" alt="Logo">
-    <h2>Copenhagen Marathon</h2>
-  </div>
-  <div class="info">
-    <div>
-      <p class="label">Weather</p>
-      <p class="value" id="weather">17°C</p>
-    </div>
-    <div>
-      <p class="label">Time left</p>
-      <p class="value" id="time-left">2h 30min</p>
-    </div>
-    <a class="home-button" href="Home.html">⌂</a>
-  </div>
-`;
-
-
 // Weather in Copenhagen centre
 fetch("https://api.open-meteo.com/v1/forecast?latitude=55.6761&longitude=12.5683&current=temperature_2m")
   .then(function (response) {
