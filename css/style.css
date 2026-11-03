@@ -45,11 +45,12 @@ img {
 }
 
 
-/* ---------- 3. SCREEN = the whole kiosk (1280 x 800) ---------- */
+/* ---------- 3. SCREEN = the whole kiosk (fills the browser window) ---------- */
 .screen {
-  width: 1280px;
-  height: 800px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   /* yellow background with soft pink spots */
   background:
@@ -63,6 +64,7 @@ img {
 /* ---------- 4. HEADER (top bar) ---------- */
 .header {
   height: 96px;
+  flex-shrink: 0;
   padding: 0 40px;
   display: flex;
   align-items: center;
@@ -141,6 +143,8 @@ img {
 
 /* ---------- 6. BODY = map on the left + panel on the right ---------- */
 .body {
+  flex: 1;                       /* takes all the height under the header */
+  min-height: 0;
   display: flex;
   gap: 32px;
   padding: 20px 40px 36px 40px;
@@ -150,19 +154,24 @@ img {
 /* ---------- 7. MAP ---------- */
 .map {
   position: relative;            /* pins are placed inside it */
-  width: 808px;
-  height: 660px;
-  flex-shrink: 0;
+  flex: 1;                       /* takes all the width next to the panel */
+  min-width: 0;
   background: var(--map);
   border: 1px solid rgba(43, 15, 58, 0.2);
   border-radius: 20px;
   overflow: hidden;
 }
 
-/* everything that zooms: drawing + pins + "you" dot */
+/* everything that zooms: drawing + pins + "you" dot
+   (always 808 x 660 like the drawing, kept in the middle of the map,
+   so on a small screen only the edges are cut off) */
 .map-content {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
+  width: 808px;
+  height: 660px;
+  margin: -330px 0 0 -404px;
   transform-origin: 420px 350px;   /* zoom around "you are here" */
   transition: transform 0.3s;      /* smooth zoom */
 }
@@ -263,6 +272,8 @@ img {
 /* ---------- 8. PANEL (right column) ---------- */
 .panel {
   width: 360px;
+  flex-shrink: 0;
+  overflow-y: auto;              /* very small screen → only the panel scrolls */
   display: flex;
   flex-direction: column;
   gap: 24px;
