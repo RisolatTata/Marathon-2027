@@ -6,11 +6,17 @@
 
 // --- ZOOM ---
 let zoom = 1;                                        // 1 = normal size
+const map = document.querySelector(".map");
 const mapContent = document.querySelector(".map-content");
 
+// the whole drawing is 1408 x 860, "fit" only makes it bigger on very big screens
 function showZoom() {
-  mapContent.style.transform = "scale(" + zoom + ")";
+  const fit = Math.max(1, map.clientWidth / 1408, map.clientHeight / 860);
+  mapContent.style.transform = "scale(" + fit * zoom + ")";
 }
+
+showZoom();
+window.addEventListener("resize", showZoom);         // window bigger/smaller → fit again
 
 // + : make the map bigger (max 2x)
 document.querySelector("#zoom-in").addEventListener("click", function () {
@@ -18,9 +24,9 @@ document.querySelector("#zoom-in").addEventListener("click", function () {
   showZoom();
 });
 
-// − : make the map smaller (min 0.75x)
+// − : make the map smaller again (not smaller than the map box, else you see empty edges)
 document.querySelector("#zoom-out").addEventListener("click", function () {
-  if (zoom > 0.75) zoom = zoom - 0.25;
+  if (zoom > 1) zoom = zoom - 0.25;
   showZoom();
 });
 
