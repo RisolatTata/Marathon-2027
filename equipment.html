@@ -6,29 +6,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
 <div class="screen">
 
-  <!-- HEADER -->
-  <header class="header">
-    <a class="logo" href="Home.html">
-      <img src="images/logo.png" alt="" width="48" height="48">
-      Copenhagen Marathon
-    </a>
+  <!-- New Header with the weather and timer included -->
+  <header>
+    <div class="logo">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
+    </div>
 
-    <div class="header-right">
-      <div class="info">
-        <span class="info-label">Weather</span>
-        <span class="info-value"><img src="images/icon-sun.svg" alt=""> 17°C</span>
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value" id="weather">17°C</p>
       </div>
-      <div class="info">
-        <span class="info-label">Time left</span>
-        <span class="info-value">2h 30min</span>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value" id="time-left">2h 30min</p>
       </div>
-      <a class="square-button" href="Home.html">
-        <img src="images/icon-home.svg" alt="Home">
-      </a>
+      <a href="Home.html" class="home-button">⌂</a>
     </div>
   </header>
 
@@ -90,10 +89,10 @@
         <a class="button" href="all-locations.html">Check other stations →</a>
       </div>
 
-      <!-- QR → screen for the smartwatch (not made yet) -->
-      <a class="qr" href="#">
+      <!-- QR → screen for the smartwatch -->
+      <div class="qr">
         <img src="images/qr-code.svg" alt="QR code" width="100" height="100">
-      </a>
+      </div>
 
     </aside>
 
@@ -101,5 +100,6 @@
 </div>
 
 <script src="js/map.js"></script>
+<script src="js/header.js"></script>
 </body>
 </html>

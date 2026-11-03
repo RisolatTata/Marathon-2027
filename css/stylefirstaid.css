@@ -1,0 +1,232 @@
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background-color: #e8d35c;
+  background-image: url("../assets/Background.png");
+  background-size: cover;
+  min-height: 100vh;
+}
+h1, h2, p {
+  margin: 0;
+}
+a {
+  color: #1f1f2e;
+  text-decoration: none;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fbf3d6;
+  padding: 10px 40px;
+}
+.logo, .info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo {
+  gap: 0;
+}
+.info {
+  gap: 20px;
+}
+.logo img {
+  width: 48px;
+  height: 48px;
+}
+.logo h2 {
+  font-size: 17px;
+}
+.label, .details-label {
+  font-size: 10px;
+  color: #777;
+}
+.value {
+  font-weight: bold;
+  font-size: 14px;
+}
+.home-button, .emergency-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 18px;
+}
+.screen {
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+  color: #1f1f2e;
+}
+.map, .panel {
+  position: relative;
+  height: 80vh;
+}
+.map {
+  flex: 2;
+  background-color: #f3f0e8;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.map-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 808px;
+  height: 660px;
+  margin: -330px 0 0 -404px;
+}
+.map-drawing {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.you {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  box-sizing: border-box;
+  background-color: #ffd84a;
+  border: 4px solid #2b0f3a;
+  border-radius: 50%;
+}
+.pin {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b0f3a;
+  border-radius: 50%;
+}
+.pin.extra {
+  display: none;
+}
+.map:has(input:checked) .pin.extra {
+  display: flex;
+}
+.pin.big {
+  width: 60px;
+  height: 60px;
+}
+.map-button, .back-button {
+  background-color: white;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.map-button {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+.panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.back-button {
+  align-self: flex-end;
+  padding: 6px 14px;
+  font-size: 12px;
+}
+.title {
+  margin-top: 10px;
+  font-size: 28px;
+}
+.distance {
+  margin: 4px 0 16px;
+  font-size: 15px;
+}
+.details, .emergency {
+  background-color: #fbf3d6;
+  border-radius: 10px;
+  padding: 16px;
+}
+.details {
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+.details-label {
+  margin-bottom: 4px;
+}
+.details-text {
+  font-size: 15px;
+}
+.status-link {
+  color: white;
+}
+.status {
+  background-color: #5b9a6b;
+  border-radius: 10px;
+  padding: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+.help-text, .emergency-info {
+  margin-top: 12px;
+  font-size: 11px;
+}
+.help-text {
+  font-weight: bold;
+}
+.qr {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 8px;
+  border-radius: 10px;
+}
+.qr img {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+.emergency {
+  border-left: 4px solid #c0392b;
+}
+.emergency-label {
+  margin-bottom: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #c0392b;
+}
+.emergency-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.emergency-icon {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #c0392b;
+  border-radius: 50%;
+  background-color: white;
+  color: #c0392b;
+  font-size: 22px;
+}
+.emergency-call {
+  font-size: 16px;
+  font-weight: bold;
+}
+.emergency-number {
+  margin-left: 4px;
+  font-size: 32px;
+  color: #c0392b;
+}
+.emergency-info {
+  color: #555;
+}

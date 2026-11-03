@@ -24,7 +24,7 @@ document.querySelector("#zoom-out").addEventListener("click", function () {
   showZoom();
 });
 
-// ◎ : back to normal size
+//back to normal size
 document.querySelector("#recenter").addEventListener("click", function () {
   zoom = 1;
   showZoom();
