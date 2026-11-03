@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Equipment – Copenhagen Marathon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+<div class="screen">
+
+  <!-- New Header with the weather and timer included -->
+  <header>
+    <div class="logo">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
+    </div>
+
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value" id="weather">17°C</p>
+      </div>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value" id="time-left">2h 30min</p>
+      </div>
+      <a href="Home.html" class="home-button">⌂</a>
+    </div>
+  </header>
+
+
+  <!-- ========== BODY ========== -->
+  <main class="body">
+
+    <!-- ----- MAP (left) ----- -->
+    <section class="map">
+      <!-- everything inside "map-content" gets bigger/smaller on zoom -->
+      <div class="map-content">
+        <!-- streets + route + dashed line (one picture) -->
+        <img class="map-drawing" src="images/map-equipment.svg" alt="">
+
+        <!-- you are here -->
+        <div class="you" style="left: 407px; top: 337px;"></div>
+
+        <!-- equipment station -->
+        <div class="pin big" style="left: 675px; top: 300px;">
+          <img src="images/icon-shoe.svg" alt="Equipment">
+        </div>
+      </div>
+
+      <!-- zoom buttons (they work through js/map.js) -->
+      <div class="zoom">
+        <button class="square-button" id="zoom-in">+</button>
+        <button class="square-button" id="zoom-out">−</button>
+        <button class="square-button" id="recenter">◎</button>
+      </div>
+
+      <!-- switch is OFF → click opens the map with all locations -->
+      <a class="toggle" href="all-locations.html">
+        <span class="switch"></span>
+        Show all locations
+      </a>
+    </section>
+
+
+    <!-- ----- PANEL (right) ----- -->
+    <aside class="panel">
+
+      <a class="button back go-back" href="all-locations.html">
+        <img src="images/icon-back.svg" alt=""> Back
+      </a>
+
+      <div class="heading">
+        <h1>Equipment</h1>
+        <p>3 km left</p>
+      </div>
+
+      <div class="stock">
+        <h2>In stock at this station</h2>
+
+        <div class="stock-item">Energy gels   <span class="status available">Available</span></div>
+        <div class="stock-item">Socks         <span class="status low">Low stock</span></div>
+        <div class="stock-item">Plasters      <span class="status available">Available</span></div>
+        <div class="stock-item">Water bottles <span class="status out">Out of stock</span></div>
+
+        <a class="button" href="all-locations.html">Check other stations →</a>
+      </div>
+
+      <!-- QR → screen for the smartwatch -->
+      <div class="qr">
+        <img src="images/qr-code.svg" alt="QR code" width="100" height="100">
+      </div>
+
+    </aside>
+
+  </main>
+</div>
+
+<script src="js/map.js"></script>
+<script src="js/header.js"></script>
+</body>
+</html>

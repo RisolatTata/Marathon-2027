@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emergency - Copenhagen Marathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylefirstaid.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
+    </div>
+
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value" id="weather">17°C</p>
+      </div>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value" id="time-left">2h 30min</p>
+      </div>
+      <a href="Home.html" class="home-button">⌂</a>
+    </div>
+  </header>
+
+  <div class="screen">
+
+    <div class="map">
+      <div class="map-content">
+        <img class="map-drawing" src="images/map-all-locations.svg" alt="">
+
+        <div class="you" style="left: 407px; top: 337px;"></div>
+
+        <div class="pin big" style="left: 445px; top: 285px;"><img src="images/icon-aid.svg" alt="First aid"></div>
+        <div class="pin" style="left: 150px; top: 470px;"><img src="images/icon-aid.svg" alt="First aid"></div>
+        <div class="pin" style="left: 640px; top: 260px;"><img src="images/icon-aid.svg" alt="First aid"></div>
+
+        <!-- only visible when "Show all locations" is on -->
+        <a class="pin extra" href="water.html"     style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin extra" href="water.html"     style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin extra" href="toilet.html"    style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra" href="toilet.html"    style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra" href="equipment.html" style="left: 540px; top: 230px;"><img src="images/icon-shoe.svg" alt="Equipment"></a>
+      </div>
+
+      <label class="map-button">
+        <input type="checkbox">
+        Show all locations
+      </label>
+    </div>
+
+    <div class="panel">
+      <a href="firstaid-locations.html" class="back-button">← Back</a>
+
+      <h1 class="title">First aid</h1>
+      <p class="distance">5 m left</p>
+
+      <div class="details">
+        <p class="details-label">DETAILS</p>
+        <p class="details-text">Medical tent right next to you</p>
+      </div>
+
+      <div class="emergency">
+        <p class="emergency-label">IN AN EMERGENCY</p>
+
+        <div class="emergency-row">
+          <div class="emergency-icon">☎</div>
+          <p class="emergency-call">call <span class="emergency-number">112</span></p>
+        </div>
+
+        <p class="emergency-info">Use your own phone. Free, 24/7.<br>Not urgent? Medical helpline 1813.</p>
+      </div>
+
+      <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://copenhagenmarathon.dk" alt="QR code">
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/header.js"></script>
+</body>
+</html>
