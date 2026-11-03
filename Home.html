@@ -6,7 +6,7 @@
   <title>Copenhagen Marathon</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home">
 
     <header>
       <div class="logo">
@@ -26,29 +26,27 @@
     </header>
 
     <main class="hero">
-      <h1 class="hero__logo">
-        <img src="assets/FullLogo.png" alt="Copenhagen Marathon" width="420" height="90">
-      </h1>
+        <img class="hero__logo" src="assets/FullLogo.png" alt="Copenhagen Marathon">
 
-      <div class="actions">
-        <a class="btn btn--primary" href="#location">
-          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <div class="hero-actions">
+        <a class="button dark" href="Menu.html">
+         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
           Find location
         </a>
-        <a class="btn btn--secondary" href="#map">
-          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <a class="button" href="all-locations.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
           Open map
         </a>
       </div>
     </main>
 
     <div class="lang" role="group" aria-label="Language">
-      <button class="lang__btn is-active" type="button" aria-pressed="true">EN</button>
-      <button class="lang__btn" type="button" aria-pressed="false">DA</button>
+      <button class="active" type="button" aria-pressed="true">EN</button>
+      <button type="button" aria-pressed="false">DA</button>
     </div>
 
   </div>
+  
   <script src="js/header.js"></script>
-=======
 </body>
 </html>
