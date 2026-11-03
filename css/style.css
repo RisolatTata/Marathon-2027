@@ -237,6 +237,22 @@ a.pin:hover {
   display: flex;
 }
 
+/* you can grab the map with the mouse and move it (js/map.js) */
+.map {
+  cursor: grab;
+  touch-action: none;              /* on a touch screen: finger moves the map */
+  user-select: none;
+}
+
+.map.dragging {
+  cursor: grabbing;
+}
+
+.map.dragging .map-content {
+  transition: none;                /* follow the mouse right away */
+}
+
+/* zoom buttons bottom right */
 .zoom {
   position: absolute;
   right: 20px;
@@ -260,7 +276,14 @@ a.pin:hover {
   cursor: pointer;
 }
 
+/* "+" or "−" can't be used any more → greyed out */
+.zoom button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 /* show all locations knop */
+/* "Show all locations" switch bottom left */
 .toggle {
   position: absolute;
   left: 20px;
@@ -517,4 +540,111 @@ input:checked + .switch::after {
 .emergency p:last-child {
   font-size: 12px;
   color: var(--muted);
+}
+/* =========================================================
+   HOME PAGE
+   Add class="home" to <body> in Home.html so these styles
+   only affect the home page.
+   ========================================================= */
+
+.home .screen {
+  position: relative;
+}
+
+/* header: see-through so the background shows, no home button here */
+.home header {
+  background: rgba(251, 243, 214, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.home header .home-button {
+  display: none;
+}
+
+
+/* ---------- HERO: big logo + two buttons ---------- */
+.hero {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(40px, 12vh, 110px);   /* shrinks on a low screen */
+  padding: 0 40px 60px;
+}
+
+.hero-logo {
+  width: min(420px, 60vw);
+  height: auto;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-actions .button {
+  min-width: 160px;
+  justify-content: center;
+  padding: 14px 22px;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.hero-actions .button:hover {
+  transform: translateY(-2px);
+}
+
+/* dark version of .button (Find location) */
+.button.dark {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--yellow);
+}
+
+/* pin icon inside a button */
+.button svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.button:focus-visible,
+.lang button:focus-visible {
+  outline: 3px solid var(--dark);
+  outline-offset: 3px;
+}
+
+
+/* ---------- LANGUAGE SWITCH (bottom left) ---------- */
+.lang {
+  position: absolute;
+  left: 40px;
+  bottom: 36px;
+  display: flex;
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+}
+
+.lang button {
+  padding: 5px 12px;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  font: 600 12px "Inter", Arial, sans-serif;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.lang button.active {
+  background: var(--dark);
+  color: var(--white);
 }
