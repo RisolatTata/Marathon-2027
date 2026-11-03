@@ -1,4 +1,4 @@
-// Weather in Copenhagen centre
+// weer in kopenhagen
 fetch("https://api.open-meteo.com/v1/forecast?latitude=55.6761&longitude=12.5683&current=temperature_2m")
   .then(function (response) {
     return response.json();
@@ -8,8 +8,8 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=55.6761&longitude=12.5683
   });
 
 
-// Time left: starts at 2h 30min, counts down every second
-// and is saved, so it keeps going on the next page
+// timer van 2h 30min
+// This line makes sure it saves if u go to another tab so time save and doesn't reset
 let secondsLeft = Number(sessionStorage.getItem("secondsLeft")) || 2 * 3600 + 30 * 60;
 
 function showTimeLeft() {

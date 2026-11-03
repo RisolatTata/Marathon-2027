@@ -1,10 +1,10 @@
-// Map zoom buttons: + (bigger), − (smaller), ◎ (normal size)
+// zoom knoppen van de map
 const map = document.querySelector(".map");
 const mapContent = document.querySelector(".map-content");
 let zoom = 1;
 
 function showZoom() {
-  // the drawing is 1408 x 860, on very big screens it has to grow to fill the map
+  // kaart is 1408x860, op een groot scherm moet hij groter
   const fit = Math.max(1, map.clientWidth / 1408, map.clientHeight / 860);
   mapContent.style.transform = "scale(" + fit * zoom + ")";
 }
@@ -27,8 +27,7 @@ document.querySelector("#recenter").addEventListener("click", function () {
 showZoom();
 window.addEventListener("resize", showZoom);
 
-
-// Links with class "go-back" go to the previous page (if there is one)
+// terug naar vorige pagina
 document.querySelectorAll(".go-back").forEach(function (link) {
   link.addEventListener("click", function (event) {
     if (history.length > 1) {

@@ -9,13 +9,30 @@
 </head>
 <body>
 <div class="screen">
-  <header></header>
+  <header>
+    <div class="logo">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
+    </div>
+
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value" id="weather">17°C</p>
+      </div>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value" id="time-left">2h 30min</p>
+      </div>
+      <a href="Home.html" class="home-button">⌂</a>
+    </div>
+  </header>
   <main class="body">
     <section class="map">
       <div class="map-content">
         <img class="map-drawing" src="images/map-equipment.svg" alt="">
-        <div class="you" style="left: 407px; top: 337px;"></div>
-        <div class="pin big" style="left: 675px; top: 300px;">
+        <div class="you"></div>
+        <div class="pin big equipment-3">
           <img src="images/icon-shoe.svg" alt="Equipment">
         </div>
       </div>

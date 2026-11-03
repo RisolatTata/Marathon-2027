@@ -1,26 +1,19 @@
-/* =========================================================
-   Copenhagen Marathon – one stylesheet for all pages
-   (except Home.html)
-   ========================================================= */
+/* style voor alle paginas behalve home */
 
-
-/* ---------- COLORS ---------- */
 :root {
-  --dark:   #2b0f3a;   /* text, pins, icons */
-  --muted:  #5a3a5e;   /* small text */
-  --yellow: #ffd84a;   /* "you are here" dot */
-  --cream:  #fbf3d6;   /* header + cards */
-  --map:    #f3f0e8;   /* map background */
-  --white:  #ffffff;
-  --green:  #2e9e5b;   /* Available + "Location sent" */
-  --orange: #e0a100;   /* Low stock */
-  --red:    #d62839;   /* Out of stock + emergency */
+  --dark: #2b0f3a;
+  --muted: #5a3a5e;
+  --yellow: #ffd84a;
+  --cream: #fbf3d6;
+  --map: #f3f0e8;
+  --white: #ffffff;
+  --green: #2e9e5b;
+  --orange: #e0a100;
+  --red: #d62839;
   --border: rgba(43, 15, 58, 0.15);
   --shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
 }
 
-
-/* ---------- BASICS ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -31,7 +24,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   color: var(--dark);
   background: var(--yellow) url("../assets/Background.png") center / cover;
-  overflow: hidden;                 /* the page never scrolls */
+  overflow: hidden; /* geen scrollen */
 }
 
 a {
@@ -43,15 +36,13 @@ img {
   display: block;
 }
 
-/* the whole window: header on top, content below */
 .screen {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-
-/* ---------- HEADER (the HTML is made by js/header.js) ---------- */
+/* header */
 header {
   display: flex;
   justify-content: space-between;
@@ -91,19 +82,18 @@ header .value {
 }
 
 header .home-button {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-
-/* ---------- CONTENT: map left + panel right ---------- */
 .body {
   flex: 1;
   min-height: 0;
@@ -112,8 +102,7 @@ header .home-button {
   padding: 20px 40px 36px;
 }
 
-
-/* ---------- MAP ---------- */
+/* map */
 .map {
   position: relative;
   flex: 1;
@@ -124,8 +113,7 @@ header .home-button {
   overflow: hidden;
 }
 
-/* drawing + pins + "you" dot, 808 x 660, in the middle of the map
-   (js/map.js zooms this part) */
+/* kaart zelf staat in het midden, map.js zoomt dit */
 .map-content {
   position: absolute;
   left: 50%;
@@ -136,16 +124,17 @@ header .home-button {
   transition: transform 0.3s;
 }
 
-/* the drawing has 300px extra land left/right and 100px top/bottom */
 .map-drawing {
   position: absolute;
   left: -300px;
   top: -100px;
 }
 
-/* yellow "you are here" dot with a pulsing ring */
+/* gele stip = jij */
 .you {
   position: absolute;
+  left: 407px;
+  top: 337px;
   width: 26px;
   height: 26px;
   background: var(--yellow);
@@ -163,10 +152,12 @@ header .home-button {
 }
 
 @keyframes pulse {
-  to { transform: scale(2.6); opacity: 0; }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
 }
 
-/* round pin with an icon, left/top are set in the HTML */
 .pin {
   position: absolute;
   width: 48px;
@@ -190,7 +181,54 @@ a.pin:hover {
   height: 60px;
 }
 
-/* "extra" pins only show when the "Show all locations" checkbox is on */
+/* plekken van de pins */
+.water-1 {
+  left: 420px;
+  top: 170px;
+}
+
+.water-2 {
+  left: 560px;
+  top: 470px;
+}
+
+.toilet-1 {
+  left: 250px;
+  top: 320px;
+}
+
+.toilet-2 {
+  left: 330px;
+  top: 540px;
+}
+
+.aid-1 {
+  left: 150px;
+  top: 470px;
+}
+
+.aid-2 {
+  left: 445px;
+  top: 285px;
+}
+
+.aid-3,
+.equipment-1 {
+  left: 640px;
+  top: 260px;
+}
+
+.equipment-2 {
+  left: 540px;
+  top: 230px;
+}
+
+.equipment-3 {
+  left: 675px;
+  top: 300px;
+}
+
+/* extra pins pas zien als show all locations aan staat */
 .pin.extra {
   display: none;
 }
@@ -199,7 +237,6 @@ a.pin:hover {
   display: flex;
 }
 
-/* zoom buttons bottom right */
 .zoom {
   position: absolute;
   right: 20px;
@@ -216,12 +253,14 @@ a.pin:hover {
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: var(--shadow);
-  font: 600 26px "Inter", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 600;
   color: var(--dark);
   cursor: pointer;
 }
 
-/* "Show all locations" switch bottom left */
+/* show all locations knop */
 .toggle {
   position: absolute;
   left: 20px;
@@ -263,7 +302,6 @@ a.pin:hover {
   border-radius: 50%;
 }
 
-/* switch ON: by class "on" or by a checked checkbox */
 .switch.on,
 input:checked + .switch {
   background: var(--dark);
@@ -274,8 +312,7 @@ input:checked + .switch::after {
   left: 16px;
 }
 
-
-/* ---------- PANEL (right) ---------- */
+/* rechterkant */
 .panel {
   position: relative;
   width: 360px;
@@ -285,14 +322,6 @@ input:checked + .switch::after {
   gap: 24px;
 }
 
-/* low screen: less space between the parts, so they don't touch the QR code */
-@media (max-height: 700px) {
-  .panel {
-    gap: 14px;
-  }
-}
-
-/* white button with text */
 .button {
   display: inline-flex;
   align-items: center;
@@ -309,7 +338,6 @@ input:checked + .switch::after {
   align-self: flex-end;
 }
 
-/* big title + small text under it */
 .heading h1 {
   font-size: 40px;
 }
@@ -321,7 +349,6 @@ input:checked + .switch::after {
   color: var(--muted);
 }
 
-/* card with a small title (stock, details, emergency) */
 .card {
   display: flex;
   flex-direction: column;
@@ -336,12 +363,12 @@ input:checked + .switch::after {
 .card h2 {
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--muted);
 }
 
-/* QR code always at the bottom right, level with the bottom of the map */
+/* qr rechtsonder */
 .qr {
   position: absolute;
   right: 0;
@@ -352,20 +379,29 @@ input:checked + .switch::after {
   border-radius: 12px;
 }
 
-/* 120px, but smaller on a low screen so it stays in view */
 .qr img {
-  width: min(120px, 15vh);
-  height: min(120px, 15vh);
+  width: 120px;
+  height: 120px;
 }
 
+/* kleine schermen */
+@media (max-height: 700px) {
+  .panel {
+    gap: 14px;
+  }
 
-/* ---------- EQUIPMENT: stock list ---------- */
+  .qr img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* equipment */
 .stock-item {
   display: flex;
   justify-content: space-between;
 }
 
-/* status with a colored dot in front */
 .status {
   display: flex;
   align-items: center;
@@ -382,12 +418,19 @@ input:checked + .switch::after {
   border-radius: 50%;
 }
 
-.available { color: var(--green); }
-.low       { color: var(--orange); }
-.out       { color: var(--red); }
+.available {
+  color: var(--green);
+}
 
+.low {
+  color: var(--orange);
+}
 
-/* ---------- ALL LOCATIONS: list ---------- */
+.out {
+  color: var(--red);
+}
+
+/* all locations */
 .list {
   list-style: none;
   display: flex;
@@ -425,16 +468,10 @@ input:checked + .switch::after {
   color: var(--dark);
 }
 
-
-/* ---------- FIRST AID ---------- */
-/* green "Location sent to medics" button */
+/* first aid */
 .sent {
-  padding: 16px;
-  background: var(--green);
-  border-radius: 12px;
-  color: var(--white);
-  font-weight: 700;
-  text-align: center;
+  justify-content: center;
+  color: var(--green);
 }
 
 .note {
@@ -443,8 +480,7 @@ input:checked + .switch::after {
   font-weight: 600;
 }
 
-
-/* ---------- EMERGENCY: "call 112" card ---------- */
+/* emergency */
 .emergency {
   border-left: 4px solid var(--red);
 }
