@@ -11,7 +11,6 @@
 <body>
 <div class="screen">
 
-  <!-- New Header with the weather and timer included -->
   <header>
     <div class="logo">
       <img src="assets/Logo.png" alt="Logo">
@@ -32,20 +31,13 @@
   </header>
 
 
-  <!-- ========== BODY ========== -->
+  <!--  BODY  -->
   <main class="body">
-
-    <!-- ----- MAP (left) ----- -->
     <section class="map">
-      <!-- everything inside "map-content" gets bigger/smaller on zoom -->
       <div class="map-content">
-        <!-- streets + route (one picture) -->
         <img class="map-drawing" src="images/map-all-locations.svg" alt="">
-
-        <!-- you are here -->
         <div class="you" style="left: 407px; top: 337px;"></div>
 
-        <!-- pins: left / top = where the pin stands on the map. Click = open that place -->
         <a class="pin" href="water.html" style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
         <a class="pin" href="water.html" style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
         <a class="pin" href="toilet.html"       style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
@@ -54,14 +46,13 @@
         <a class="pin" href="firstaid-locations.html"     style="left: 150px; top: 470px;"><img src="images/icon-aid.svg"     alt="First aid"></a>
       </div>
 
-      <!-- zoom buttons (they work through js/map.js) -->
       <div class="zoom">
         <button class="square-button" id="zoom-in">+</button>
         <button class="square-button" id="zoom-out">−</button>
         <button class="square-button" id="recenter">◎</button>
       </div>
 
-      <!-- switch is ON → click goes back to the previous screen -->
+      <!--click goes back to the previous screen -->
       <a class="toggle go-back" href="equipment.html">
         <span class="switch on"></span>
         Show all locations
@@ -69,7 +60,7 @@
     </section>
 
 
-    <!-- ----- PANEL (right) ----- -->
+    <!-- PANEL (right)-->
     <aside class="panel">
 
       <a class="button back go-back" href="Menu.html">
