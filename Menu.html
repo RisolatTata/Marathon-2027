@@ -1,68 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Copenhagen Marathon</title>
-    <link rel="stylesheet" href="Stylesheet.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Copenhagen Marathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="map-page">
+<body>
 <div class="screen">
-    <!-- New Header with the weather and timer included -->
-    <header>
-      <div class="logo">
-        <img src="assets/Logo.png" alt="Logo">
-        <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
-      </div>
-
-      <div class="info">
-        <div class="info-block">
-          <p class="label">Weather</p>
-          <p class="value" id="weather">17°C</p>
-        </div>
-        <div class="info-block">
-          <p class="label">Time left</p>
-          <p class="value" id="time-left">2h 30min</p>
-        </div>
-        <a href="Home.html" class="home-button">⌂</a>
-      </div>
-    </header>
-
-  <!-- ===== COPY MAP START =====
-       Map with all locations. Paste this under </header> on another page.
-       That page also needs: <body class="map-page">, <div class="screen"> around everything
-       and <script src="js/map.js"></script> at the bottom (zoom buttons).
-       Remove the pins you don't need, add "big" to the class of the important ones. -->
-  <main class="body">
-    <section class="map">
-      <div class="map-content">
-        <img class="map-drawing" src="images/map-all-locations.svg" alt="">
-
-        <div class="you" style="left: 407px; top: 337px;"></div>
-
-        <a class="pin" href="water.html"              style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
-        <a class="pin" href="water.html"              style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
-        <a class="pin" href="toilet.html"             style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
-        <a class="pin" href="toilet.html"             style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
-        <a class="pin" href="equipment.html"          style="left: 640px; top: 260px;"><img src="images/icon-shoe.svg"    alt="Equipment"></a>
-        <a class="pin" href="firstaid-locations.html" style="left: 150px; top: 470px;"><img src="images/icon-aid.svg"     alt="First aid"></a>
-      </div>
-
-      <div class="zoom">
-        <button class="square-button" id="zoom-in">+</button>
-        <button class="square-button" id="zoom-out">−</button>
-        <button class="square-button" id="recenter">◎</button>
-      </div>
-
-    </section>
-  </main>
-  <!-- ===== COPY MAP END ===== -->
-
+  <header></header>
 </div>
 
-    <script src="js/map.js"></script>
-    <script src="js/header.js"></script>
+<script src="js/header.js"></script>
 </body>
 </html>
