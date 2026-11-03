@@ -238,6 +238,27 @@ a.pin:hover {
   display: flex;
 }
 
+/* you can grab the map with the mouse and move it (js/map.js) */
+.map {
+  cursor: grab;
+  touch-action: none;              /* on a touch screen: finger moves the map */
+  user-select: none;
+}
+
+.map.dragging {
+  cursor: grabbing;
+}
+
+.map.dragging .map-content {
+  transition: none;                /* follow the mouse right away */
+}
+
+/* "+" or "−" can't be used any more → greyed out */
+.square-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 
 /* =========================================================
    6. EQUIPMENT + ALL LOCATIONS  (<body class="map-page">)
@@ -336,6 +357,23 @@ a.pin:hover {
 
 .map-page .switch.on::after {
   left: 16px;                          /* circle moves right */
+}
+
+/* the switch is a hidden checkbox: checked = ON */
+.map-page .toggle {
+  cursor: pointer;
+}
+
+.map-page .toggle input {
+  display: none;
+}
+
+.map-page .toggle input:checked + .switch {
+  background: var(--dark);
+}
+
+.map-page .toggle input:checked + .switch::after {
+  left: 16px;
 }
 
 /* --- panel (right) --- */

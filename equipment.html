@@ -40,17 +40,26 @@
         <div class="pin big" style="left: 675px; top: 300px;">
           <img src="images/icon-shoe.svg" alt="Equipment">
         </div>
+
+        <!-- only visible when "Show all locations" is on -->
+        <a class="pin extra" href="water.html"              style="left: 420px; top: 170px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin extra" href="water.html"              style="left: 560px; top: 470px;"><img src="images/icon-droplet.svg" alt="Water station"></a>
+        <a class="pin extra" href="toilet.html"             style="left: 250px; top: 320px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
+        <a class="pin extra" href="toilet.html"             style="left: 330px; top: 540px;"><img src="images/icon-toilet.svg"  alt="Toilets"></a>
+        <a class="pin extra" href="firstaid-locations.html" style="left: 150px; top: 470px;"><img src="images/icon-aid.svg"     alt="First aid"></a>
       </div>
       <div class="zoom">
-        <button class="square-button" id="zoom-in">+</button>
-        <button class="square-button" id="zoom-out">−</button>
-        <button class="square-button" id="recenter">◎</button>
+        <button class="square-button" id="zoom-in"  title="Zoom in">+</button>
+        <button class="square-button" id="zoom-out" title="Zoom out">−</button>
+        <button class="square-button" id="recenter" title="Back to my location">◎</button>
       </div>
 
-      <a class="toggle" href="all-locations.html">
+      <!-- switch: ON = the other places appear on this map -->
+      <label class="toggle">
+        <input type="checkbox">
         <span class="switch"></span>
         Show all locations
-      </a>
+      </label>
     </section>
 
     <aside class="panel">

@@ -1,40 +1,143 @@
 // =========================================================
-// Map buttons: zoom in (+), zoom out (−), recenter (◎)
-// and the "Back" button.
-// Used by: equipment.html, all-locations.html
+// MAP: drag with the mouse, zoom (+ / − / mouse wheel),
+// ◎ = back to "you are here", and the "Back" button.
+// Used by every page with a map.
 // =========================================================
 
-// --- ZOOM ---
-let zoom = 1;                                        // 1 = normal size
 const map = document.querySelector(".map");
 const mapContent = document.querySelector(".map-content");
 
-// the whole drawing is 1408 x 860, "fit" only makes it bigger on very big screens
-function showZoom() {
-  const fit = Math.max(1, map.clientWidth / 1408, map.clientHeight / 860);
-  mapContent.style.transform = "scale(" + fit * zoom + ")";
+// the whole drawing is 1408 x 860 (with the extra land around the 808 x 660 middle)
+const DRAWING_W = 1408;
+const DRAWING_H = 860;
+
+let zoom = 1;        // 1 = normal, 3 = closest
+let moveX = 0;       // how far the map is dragged left/right (in px)
+let moveY = 0;       // how far the map is dragged up/down (in px)
+
+
+// --- SHOW THE MAP with the current zoom + drag ---
+function showMap() {
+  if (!map || !mapContent) return;
+
+  // "fit" makes the drawing big enough to fill the map box
+  const fit = Math.max(1, map.clientWidth / DRAWING_W, map.clientHeight / DRAWING_H);
+  const scale = fit * zoom;
+
+  // don't let the map be dragged so far that empty space shows at the edges
+  const maxX = Math.max(0, (DRAWING_W * scale - map.clientWidth) / 2);
+  const maxY = Math.max(0, (DRAWING_H * scale - map.clientHeight) / 2);
+  moveX = Math.min(maxX, Math.max(-maxX, moveX));
+  moveY = Math.min(maxY, Math.max(-maxY, moveY));
+
+  mapContent.style.transform =
+    "translate(" + moveX + "px, " + moveY + "px) scale(" + scale + ")";
+
+  // grey out "−" when you can't zoom out more, "+" when you can't zoom in more
+  const zoomOut = document.querySelector("#zoom-out");
+  const zoomIn = document.querySelector("#zoom-in");
+  if (zoomOut) zoomOut.disabled = zoom <= 1;
+  if (zoomIn) zoomIn.disabled = zoom >= 3;
 }
 
-showZoom();
-window.addEventListener("resize", showZoom);         // window bigger/smaller → fit again
+// zoom in or out, keeping the middle of what you see in the middle
+function changeZoom(newZoom) {
+  newZoom = Math.min(3, Math.max(1, newZoom));
+  moveX = moveX * newZoom / zoom;
+  moveY = moveY * newZoom / zoom;
+  zoom = newZoom;
+  showMap();
+}
 
-// + : make the map bigger (max 2x)
-document.querySelector("#zoom-in").addEventListener("click", function () {
-  if (zoom < 2) zoom = zoom + 0.25;
-  showZoom();
-});
+showMap();
+window.addEventListener("resize", showMap);   // window bigger/smaller → fit again
 
-// − : make the map smaller again (not smaller than the map box, else you see empty edges)
-document.querySelector("#zoom-out").addEventListener("click", function () {
-  if (zoom > 1) zoom = zoom - 0.25;
-  showZoom();
-});
 
-//back to normal size
-document.querySelector("#recenter").addEventListener("click", function () {
-  zoom = 1;
-  showZoom();
-});
+// --- BUTTONS (only on pages that have them) ---
+const zoomInButton = document.querySelector("#zoom-in");
+const zoomOutButton = document.querySelector("#zoom-out");
+const recenterButton = document.querySelector("#recenter");
+
+// + : closer
+if (zoomInButton) {
+  zoomInButton.addEventListener("click", function () {
+    changeZoom(zoom + 0.5);
+  });
+}
+
+// − : further away
+if (zoomOutButton) {
+  zoomOutButton.addEventListener("click", function () {
+    changeZoom(zoom - 0.5);
+  });
+}
+
+// ◎ : back to normal size, "you are here" in the middle
+if (recenterButton) {
+  recenterButton.addEventListener("click", function () {
+    zoom = 1;
+    moveX = 0;
+    moveY = 0;
+    showMap();
+  });
+}
+
+
+// --- MOUSE WHEEL = zoom ---
+if (map) {
+  map.addEventListener("wheel", function (event) {
+    event.preventDefault();                       // don't scroll the page
+    changeZoom(zoom + (event.deltaY < 0 ? 0.25 : -0.25));
+  }, { passive: false });
+}
+
+
+// --- DRAG THE MAP with the mouse (or a finger) ---
+let dragging = false;
+let dragged = false;   // true if the mouse really moved (then it is not a click)
+let startX = 0;
+let startY = 0;
+
+if (map) {
+  map.addEventListener("pointerdown", function (event) {
+    // buttons, the switch and the panel stay normal clicks
+    if (event.target.closest("button, label, .toggle")) return;
+    dragging = true;
+    dragged = false;
+    startX = event.clientX - moveX;
+    startY = event.clientY - moveY;
+    map.classList.add("dragging");
+  });
+
+  window.addEventListener("pointermove", function (event) {
+    if (!dragging) return;
+    const newX = event.clientX - startX;
+    const newY = event.clientY - startY;
+    if (Math.abs(newX - moveX) + Math.abs(newY - moveY) > 3) dragged = true;
+    moveX = newX;
+    moveY = newY;
+    showMap();
+  });
+
+  window.addEventListener("pointerup", function () {
+    dragging = false;
+    map.classList.remove("dragging");
+  });
+
+  // after dragging, don't open the pin the mouse stopped on
+  map.addEventListener("click", function (event) {
+    if (dragged) {
+      event.preventDefault();
+      event.stopPropagation();
+      dragged = false;
+    }
+  }, true);
+
+  // stop the browser from dragging the map picture itself
+  map.addEventListener("dragstart", function (event) {
+    event.preventDefault();
+  });
+}
 
 
 // --- BACK ---
