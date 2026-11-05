@@ -572,11 +572,13 @@ input:checked + .switch::after {
   justify-content: center;
   gap: clamp(40px, 12vh, 110px);   /* shrinks on a low screen */
   padding: 0 40px 60px;
+  margin-top: 80px;
 }
 
 .hero-logo {
-  width: min(420px, 60vw);
+  width:50px;
   height: auto;
+  justify-content: center;
 }
 
 .hero-actions {
