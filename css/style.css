@@ -650,3 +650,105 @@ input:checked + .switch::after {
   background: var(--dark);
   color: var(--white);
 }
+/*Menu page*/
+
+.menu-content {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1094px;
+  margin: 0 auto;
+  padding: 56px 72px 40px;
+}
+ 
+.menu-content h1 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+ 
+.menu-sub {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+ 
+/* 2 x 2 grid of options */
+.options {
+  max-width: 1022px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 22px;
+}
+ 
+.option {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 172px;
+  padding: 0 26px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  transition: border-color 0.2s;
+}
+ 
+.option:hover {
+  border-color: var(--dark);
+}
+ 
+.option:focus-visible {
+  outline: 3px solid var(--dark);
+  outline-offset: 3px;
+}
+ 
+/* dark circle with yellow icon */
+.option-icon {
+  flex-shrink: 0;
+  width: 66px;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark);
+  border-radius: 50%;
+}
+ 
+.option-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+ 
+.option-title {
+  display: block;
+  font-size: 22px;
+}
+ 
+.option-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+ 
+/* small screens: body doesn't scroll, so make the cards shorter */
+@media (max-height: 700px) {
+  .menu-content {
+    padding-top: 32px;
+  }
+ 
+  .options {
+    margin-top: 24px;
+    gap: 16px;
+  }
+ 
+  .option {
+    min-height: 130px;
+  }
+}
