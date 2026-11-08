@@ -5,6 +5,7 @@
   --muted: #5a3a5e;
   --yellow: #ffd84a;
   --cream: #fbf3d6;
+  --transparent-cream:rgba(251, 243, 214, 0.65);
   --map: #f3f0e8;
   --white: #ffffff;
   --green: #2e9e5b;
@@ -48,7 +49,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
-  background: var(--cream);
+  background: var(--transparent-cream);
 }
 
 header .logo,
@@ -752,3 +753,4 @@ input:checked + .switch::after {
     min-height: 130px;
   }
 }
+

@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Copenhagen Marathon</title>
   <link rel="stylesheet" href="css/style.css">
+<style>
+  body { margin: 0; }
+  #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
+</style>
 </head>
 <body class="home">
+  <canvas id="bg"></canvas>
 
     <header>
       <div class="logo">
@@ -48,5 +53,6 @@
 
 
   <script src="js/header.js"></script>
+<script src="js/bg-animation.js"></script>
 </body>
 </html>
