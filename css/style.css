@@ -248,19 +248,10 @@ a.pin:hover {
   top: 555px;
 }
 
+/* 1 ehbo tent, vlak bij de finish naast jou */
 .aid-1 {
-  left: 240px;
-  top: 195px;
-}
-
-.aid-2 {
-  left: 295px;
-  top: 478px;
-}
-
-.aid-3 {
-  left: 599px;
-  top: 416px;
+  left: 465px;
+  top: 318px;
 }
 
 .equipment-1 {
