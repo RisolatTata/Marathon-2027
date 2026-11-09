@@ -35,12 +35,14 @@
   <main class="body">
     <section class="map">
       <div class="map-content">
-        <img class="map-drawing" src="images/map-all-locations.svg" alt="">
+        <img class="map-drawing" src="images/map-equipment.svg" alt="">
+        <!-- dashed line: from you (420,350) to the first aid tent (590,335) -->
+        <svg class="route-dash" width="808" height="660" aria-hidden="true">
+          <line x1="420" y1="350" x2="590" y2="335"/>
+        </svg>
         <div class="you"></div>
 
-        <div class="pin big aid-2"><img src="images/icon-aid.svg" alt="First aid"></div>
-        <div class="pin aid-1"><img src="images/icon-aid.svg" alt="First aid"></div>
-        <div class="pin aid-3"><img src="images/icon-aid.svg" alt="First aid"></div>
+        <div class="pin big aid-far"><img src="images/icon-aid.svg" alt="First aid"></div>
 
         <a class="pin extra water-1" href="water.html"><img src="images/icon-droplet.svg" alt="Water station"></a>
         <a class="pin extra water-2" href="water.html"><img src="images/icon-droplet.svg" alt="Water station"></a>
@@ -71,6 +73,7 @@
 
       <div class="heading">
         <h1>First aid</h1>
+        <p>3 km left</p>
       </div>
 
       <div class="card emergency">
@@ -79,12 +82,12 @@
         <p>Use your own phone and tell them where you are.<br>Your location is in the QR code below.</p>
       </div>
 
-      <!-- QR with this screen's location: read it out to the 112 operator -->
+      <!-- QR with this screen's location -->
       <!-- TODO: replace 55.6761,12.5683 with the real coordinates of this screen -->
-      <div class="card qr-card">
+      <div class="qr-row">
         <div class="qr-caption">
-          <h2>Your location</h2>
           <p class="qr-title">Scan for your exact location</p>
+          <p>Read it out to the 112 operator</p>
         </div>
         <div class="qr">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fmaps.google.com%2F%3Fq%3D55.6761%2C12.5683" alt="QR code with your location">
