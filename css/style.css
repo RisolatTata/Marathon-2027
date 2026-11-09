@@ -82,7 +82,7 @@ header .value {
   font-weight: 700;
 }
 
-header .home-button {
+#header .home-button {
   width: 44px;
   height: 44px;
   display: flex;
@@ -94,6 +94,30 @@ header .home-button {
   font-size: 20px;
   font-weight: 600;
 }
+.home-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.home-button img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+/* Bigger */
+.home-button img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Slightly bolder look */
+.home-button img {
+  filter: drop-shadow(0 0 0.5px #000) drop-shadow(0 0 0.5px #000);
+}
+
+
+
 
 .body {
   flex: 1;
