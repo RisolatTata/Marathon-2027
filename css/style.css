@@ -95,6 +95,11 @@ header .home-button {
   font-weight: 600;
 }
 
+header .home-button img {
+  width: 22px;
+  height: 22px;
+}
+
 .body {
   flex: 1;
   min-height: 0;
@@ -134,8 +139,8 @@ header .home-button {
 /* gele stip = jij */
 .you {
   position: absolute;
-  left: 407px;
-  top: 337px;
+  left: 401px;
+  top: 301px;
   width: 26px;
   height: 26px;
   background: var(--yellow);
@@ -183,65 +188,84 @@ a.pin:hover {
   margin: -6px 0 0 -6px; /* zelfde midden als een kleine pin */
 }
 
-/* plekken van de pins */
+/* letter bij de pin, zelfde als in de lijst (Station A, B, ...) */
+.pin-name {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--yellow);
+  color: var(--dark);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* plekken van de pins, allemaal vlak naast de looproute */
 .water-1 {
-  left: 420px;
-  top: 170px;
+  left: 472px;
+  top: 253px;
 }
 
 .water-2 {
-  left: 560px;
-  top: 470px;
+  left: 128px;
+  top: 417px;
 }
 
 .water-3 {
-  left: 720px;
-  top: 170px;
+  left: 527px;
+  top: 407px;
 }
 
 .water-4 {
-  left: 40px;
-  top: 480px;
+  left: 281px;
+  top: 352px;
 }
 
+
 .toilet-1 {
-  left: 250px;
-  top: 320px;
+  left: 361px;
+  top: 226px;
 }
 
 .toilet-2 {
-  left: 330px;
-  top: 540px;
+  left: 119px;
+  top: 253px;
 }
 
 .toilet-3 {
-  left: 600px;
-  top: 400px;
+  left: 523px;
+  top: 153px;
 }
 
 .toilet-4 {
-  left: 300px;
-  top: 60px;
+  left: 406px;
+  top: 555px;
 }
 
 .aid-1 {
-  left: 150px;
-  top: 470px;
+  left: 240px;
+  top: 195px;
 }
 
 .aid-2 {
-  left: 445px;
-  top: 285px;
+  left: 295px;
+  top: 478px;
 }
 
 .aid-3 {
-  left: 540px;
-  top: 230px;
+  left: 599px;
+  top: 416px;
 }
 
 .equipment-1 {
-  left: 675px;
-  top: 300px;
+  left: 375px;
+  top: 139px;
 }
 
 /* extra pins pas zien als show all locations aan staat */
@@ -407,11 +431,10 @@ input:checked + .switch::after {
   color: var(--muted);
 }
 
-/* qr rechtsonder */
+/* qr rechtsonder, schuift mee als de lijst langer wordt */
 .qr {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  margin-top: auto;
+  align-self: flex-end;
   padding: 10px;
   background: var(--white);
   border: 1px solid var(--border);
@@ -427,6 +450,11 @@ input:checked + .switch::after {
 @media (max-height: 700px) {
   .panel {
     gap: 14px;
+  }
+
+  .card {
+    gap: 6px;
+    padding: 16px 20px;
   }
 
   .qr img {

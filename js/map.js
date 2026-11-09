@@ -11,18 +11,31 @@ const mapContent = document.querySelector(".map-content");
 const DRAWING_W = 1408;
 const DRAWING_H = 860;
 
-let zoom = 1;        // 1 = normal, 3 = closest
+// the part with the route + all pins (with a bit of space around it)
+const ROUTE_W = 800;
+const ROUTE_H = 600;
+
+let zoom = 1;        // 1 = zoomed out all the way, 4 = closest
 let moveX = 0;       // how far the map is dragged left/right (in px)
 let moveY = 0;       // how far the map is dragged up/down (in px)
+
+// zoom 1 = the whole drawing just fills the map box
+function getFit() {
+  return Math.max(map.clientWidth / DRAWING_W, map.clientHeight / DRAWING_H);
+}
+
+// the zoom where the route fills the map box (here the map starts)
+function getStartZoom() {
+  const routeFit = Math.min(map.clientWidth / ROUTE_W, map.clientHeight / ROUTE_H);
+  return Math.min(4, Math.max(1, routeFit / getFit()));
+}
 
 
 // --- SHOW THE MAP with the current zoom + drag ---
 function showMap() {
   if (!map || !mapContent) return;
 
-  // "fit" makes the drawing big enough to fill the map box
-  const fit = Math.max(1, map.clientWidth / DRAWING_W, map.clientHeight / DRAWING_H);
-  const scale = fit * zoom;
+  const scale = getFit() * zoom;
 
   // don't let the map be dragged so far that empty space shows at the edges
   const maxX = Math.max(0, (DRAWING_W * scale - map.clientWidth) / 2);
@@ -37,19 +50,27 @@ function showMap() {
   const zoomOut = document.querySelector("#zoom-out");
   const zoomIn = document.querySelector("#zoom-in");
   if (zoomOut) zoomOut.disabled = zoom <= 1;
-  if (zoomIn) zoomIn.disabled = zoom >= 3;
+  if (zoomIn) zoomIn.disabled = zoom >= 4;
 }
 
 // zoom in or out, keeping the middle of what you see in the middle
 function changeZoom(newZoom) {
-  newZoom = Math.min(3, Math.max(1, newZoom));
+  newZoom = Math.min(4, Math.max(1, newZoom));
   moveX = moveX * newZoom / zoom;
   moveY = moveY * newZoom / zoom;
   zoom = newZoom;
   showMap();
 }
 
+// start with the whole route in view, without the zoom animation
+if (map && mapContent) {
+  zoom = getStartZoom();
+  mapContent.style.transition = "none";
+}
 showMap();
+setTimeout(function () {
+  if (mapContent) mapContent.style.transition = "";
+}, 50);
 window.addEventListener("resize", showMap);   // window bigger/smaller → fit again
 
 // terug naar vorige pagina
@@ -73,10 +94,10 @@ if (zoomOutButton) {
   });
 }
 
-// ◎ : back to normal size, "you are here" in the middle
+// ◎ : back to the start size, "you are here" in the middle
 if (recenterButton) {
   recenterButton.addEventListener("click", function () {
-    zoom = 1;
+    zoom = getStartZoom();
     moveX = 0;
     moveY = 0;
     showMap();

@@ -29,7 +29,7 @@
         <p class="label">Time left</p>
         <p class="value" id="time-left">2h 30min</p>
       </div>
-      <a href="Home.html" class="home-button">⌂</a>
+      <a href="Home.html" class="home-button"><img src="images/icon-home.svg" alt="Home"></a>
     </div>
   </header>
   <main class="body">
@@ -37,10 +37,21 @@
       <div class="map-content">
         <img class="map-drawing" src="images/map-equipment.svg" alt="">
         <div class="you"></div>
-        <div class="pin big water-1"><img src="images/icon-droplet.svg" alt="Water station"></div>
-        <div class="pin water-2"><img src="images/icon-droplet.svg" alt="Water station"></div>
-        <div class="pin water-3"><img src="images/icon-droplet.svg" alt="Water station"></div>
-        <div class="pin water-4"><img src="images/icon-droplet.svg" alt="Water station"></div>
+        <!-- letter = name of the station in the list (A is the first one after the start) -->
+        <div class="pin water-2"><img src="images/icon-droplet.svg" alt="Water station A"><span class="pin-name">A</span></div>
+        <div class="pin water-3"><img src="images/icon-droplet.svg" alt="Water station B"><span class="pin-name">B</span></div>
+        <div class="pin water-4"><img src="images/icon-droplet.svg" alt="Water station C"><span class="pin-name">C</span></div>
+        <div class="pin big water-1"><img src="images/icon-droplet.svg" alt="Water station D"><span class="pin-name">D</span></div>
+
+        <!-- only visible when "Show all locations" is on -->
+        <a class="pin extra toilet-1" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra toilet-2" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra toilet-3" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra toilet-4" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
+        <a class="pin extra equipment-1" href="equipment.html"><img src="images/icon-shoe.svg" alt="Equipment"></a>
+        <a class="pin extra aid-1" href="emergency.html"><img src="images/icon-aid.svg" alt="First aid"></a>
+        <a class="pin extra aid-2" href="emergency.html"><img src="images/icon-aid.svg" alt="First aid"></a>
+        <a class="pin extra aid-3" href="emergency.html"><img src="images/icon-aid.svg" alt="First aid"></a>
       </div>
       <div class="zoom">
         <button id="zoom-in"  title="Zoom in">+</button>
@@ -48,11 +59,12 @@
         <button id="recenter" title="Back to my location">◎</button>
       </div>
 
-      <!-- goes to the map with all locations -->
-      <a class="toggle" href="all-locations.html">
+      <!-- switch: ON = the other places appear on this map -->
+      <label class="toggle">
+        <input type="checkbox">
         <span class="switch"></span>
         Show all locations
-      </a>
+      </label>
     </section>
 
     <aside class="panel">
@@ -60,15 +72,15 @@
 
       <div class="heading">
         <h1>Water station</h1>
-        <p>2 km left</p>
+        <p>1.6 km left</p>
       </div>
 
       <div class="card">
         <h2>Wait time</h2>
-        <p class="stock-item">Station A <span class="status available">~2 min</span></p>
-        <p class="stock-item">Station B <span class="status low">~6 min</span></p>
-        <p class="stock-item">Station C <span class="status available">~1 min</span></p>
-        <p class="stock-item">Station D <span class="status out">~10 min</span></p>
+        <p class="stock-item">Station A (5.3 km) <span class="status available">~2 min</span></p>
+        <p class="stock-item">Station B (3.3 km) <span class="status low">~6 min</span></p>
+        <p class="stock-item">Station C (2.3 km) <span class="status available">~1 min</span></p>
+        <p class="stock-item">Station D (1.6 km) <span class="status out">~10 min</span></p>
       </div>
 
       <!-- QR -->
