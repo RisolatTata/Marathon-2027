@@ -180,6 +180,7 @@ a.pin:hover {
 .pin.big {
   width: 60px;
   height: 60px;
+  margin: -6px 0 0 -6px; /* zelfde midden als een kleine pin */
 }
 
 /* plekken van de pins */
@@ -193,6 +194,16 @@ a.pin:hover {
   top: 470px;
 }
 
+.water-3 {
+  left: 720px;
+  top: 170px;
+}
+
+.water-4 {
+  left: 40px;
+  top: 480px;
+}
+
 .toilet-1 {
   left: 250px;
   top: 320px;
@@ -201,6 +212,16 @@ a.pin:hover {
 .toilet-2 {
   left: 330px;
   top: 540px;
+}
+
+.toilet-3 {
+  left: 600px;
+  top: 400px;
+}
+
+.toilet-4 {
+  left: 300px;
+  top: 60px;
 }
 
 .aid-1 {
@@ -213,18 +234,12 @@ a.pin:hover {
   top: 285px;
 }
 
-.aid-3,
-.equipment-1 {
-  left: 640px;
-  top: 260px;
-}
-
-.equipment-2 {
+.aid-3 {
   left: 540px;
   top: 230px;
 }
 
-.equipment-3 {
+.equipment-1 {
   left: 675px;
   top: 300px;
 }
@@ -754,3 +769,136 @@ input:checked + .switch::after {
   }
 }
 
+
+
+/* gsm */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .screen {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  header .logo img {
+    width: 36px;
+    height: 36px;
+  }
+
+  header .logo h2 {
+    font-size: 14px;
+  }
+
+  header .info {
+    gap: 12px;
+  }
+
+  header .home-button {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  /* map boven, info eronder */
+  .body {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 16px 24px;
+  }
+
+  .map {
+    flex: none;
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  .panel {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .heading h1 {
+    font-size: 28px;
+  }
+
+  .heading p {
+    font-size: 16px;
+  }
+
+  .zoom {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .zoom button {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .toggle {
+    left: 12px;
+    bottom: 12px;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  /* qr heb je niet nodig als je al op je gsm zit */
+  .qr {
+    display: none;
+  }
+
+  /* home */
+  .hero {
+    margin-top: 40px;
+    padding: 0 16px 80px;
+  }
+
+  .hero__logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .lang {
+    left: 16px;
+    bottom: 20px;
+  }
+
+  /* menu */
+  .menu-content {
+    padding: 24px 16px;
+  }
+
+  .menu-content h1 {
+    font-size: 26px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .option {
+    min-height: 96px;
+    padding: 0 18px;
+  }
+
+  .option-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .option-title {
+    font-size: 18px;
+  }
+}
