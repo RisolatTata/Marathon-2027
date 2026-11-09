@@ -5,6 +5,7 @@
   --muted: #5a3a5e;
   --yellow: #ffd84a;
   --cream: #fbf3d6;
+  --transparent-cream:rgba(251, 243, 214, 0.65);
   --map: #f3f0e8;
   --white: #ffffff;
   --green: #2e9e5b;
@@ -48,7 +49,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 40px;
-  background: var(--cream);
+  background: var(--transparent-cream);
 }
 
 header .logo,
@@ -179,6 +180,7 @@ a.pin:hover {
 .pin.big {
   width: 60px;
   height: 60px;
+  margin: -6px 0 0 -6px; /* zelfde midden als een kleine pin */
 }
 
 /* plekken van de pins */
@@ -192,6 +194,16 @@ a.pin:hover {
   top: 470px;
 }
 
+.water-3 {
+  left: 720px;
+  top: 170px;
+}
+
+.water-4 {
+  left: 40px;
+  top: 480px;
+}
+
 .toilet-1 {
   left: 250px;
   top: 320px;
@@ -200,6 +212,16 @@ a.pin:hover {
 .toilet-2 {
   left: 330px;
   top: 540px;
+}
+
+.toilet-3 {
+  left: 600px;
+  top: 400px;
+}
+
+.toilet-4 {
+  left: 300px;
+  top: 60px;
 }
 
 .aid-1 {
@@ -212,18 +234,12 @@ a.pin:hover {
   top: 285px;
 }
 
-.aid-3,
-.equipment-1 {
-  left: 640px;
-  top: 260px;
-}
-
-.equipment-2 {
+.aid-3 {
   left: 540px;
   top: 230px;
 }
 
-.equipment-3 {
+.equipment-1 {
   left: 675px;
   top: 300px;
 }
@@ -606,11 +622,13 @@ input:checked + .switch::after {
   justify-content: center;
   gap: clamp(40px, 12vh, 110px);   /* shrinks on a low screen */
   padding: 0 40px 60px;
+  margin-top: 80px;
 }
 
 .hero-logo {
-  width: min(420px, 60vw);
+  width:50px;
   height: auto;
+  justify-content: center;
 }
 
 .hero-actions {
@@ -681,4 +699,240 @@ input:checked + .switch::after {
 .lang button.active {
   background: var(--dark);
   color: var(--white);
+}
+/*Menu page*/
+
+.menu-content {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1094px;
+  margin: 0 auto;
+  padding: 56px 72px 40px;
+}
+ 
+.menu-content h1 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+ 
+.menu-sub {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+ 
+/* 2 x 2 grid of options */
+.options {
+  max-width: 1022px;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 22px;
+}
+ 
+.option {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 172px;
+  padding: 0 26px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  transition: border-color 0.2s;
+}
+ 
+.option:hover {
+  border-color: var(--dark);
+}
+ 
+.option:focus-visible {
+  outline: 3px solid var(--dark);
+  outline-offset: 3px;
+}
+ 
+/* dark circle with yellow icon */
+.option-icon {
+  flex-shrink: 0;
+  width: 66px;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark);
+  border-radius: 50%;
+}
+ 
+.option-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+ 
+.option-title {
+  display: block;
+  font-size: 22px;
+}
+ 
+.option-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+ 
+/* small screens: body doesn't scroll, so make the cards shorter */
+@media (max-height: 700px) {
+  .menu-content {
+    padding-top: 32px;
+  }
+ 
+  .options {
+    margin-top: 24px;
+    gap: 16px;
+  }
+ 
+  .option {
+    min-height: 130px;
+  }
+}
+
+
+
+/* gsm */
+@media (max-width: 768px) {
+  body {
+    overflow: auto;
+  }
+
+  .screen {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 16px;
+  }
+
+  header .logo img {
+    width: 36px;
+    height: 36px;
+  }
+
+  header .logo h2 {
+    font-size: 14px;
+  }
+
+  header .info {
+    gap: 12px;
+  }
+
+  header .home-button {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  /* map boven, info eronder */
+  .body {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 16px 24px;
+  }
+
+  .map {
+    flex: none;
+    height: 55vh;
+    min-height: 320px;
+  }
+
+  .panel {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .heading h1 {
+    font-size: 28px;
+  }
+
+  .heading p {
+    font-size: 16px;
+  }
+
+  .zoom {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .zoom button {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .toggle {
+    left: 12px;
+    bottom: 12px;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  /* qr heb je niet nodig als je al op je gsm zit */
+  .qr {
+    display: none;
+  }
+
+  /* home */
+  .hero {
+    margin-top: 40px;
+    padding: 0 16px 80px;
+  }
+
+  .hero__logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .lang {
+    left: 16px;
+    bottom: 20px;
+  }
+
+  /* menu */
+  .menu-content {
+    padding: 24px 16px;
+  }
+
+  .menu-content h1 {
+    font-size: 26px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .option {
+    min-height: 96px;
+    padding: 0 18px;
+  }
+
+  .option-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .option-title {
+    font-size: 18px;
+  }
 }
