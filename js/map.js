@@ -1,107 +1,113 @@
-// zoom knoppen van de map
-// =========================================================
-// MAP: drag with the mouse, zoom (+ / − / mouse wheel),
-// ◎ = back to "you are here", and the "Back" button.
-// Used by every page with a map.
-// =========================================================
 const map = document.querySelector(".map");
 const mapContent = document.querySelector(".map-content");
 
-// the whole drawing is 1408 x 860 (with the extra land around the 808 x 660 middle)
-const DRAWING_W = 1408;
-const DRAWING_H = 860;
+// size of the whole map drawing
+const mapWidth = 1408;
+const mapHeight = 860;
 
-let zoom = 1;        // 1 = normal, 3 = closest
-let moveX = 0;       // how far the map is dragged left/right (in px)
-let moveY = 0;       // how far the map is dragged up/down (in px)
+// part with the route and the pins
+const routeWidth = 800;
+const routeHeight = 600;
 
+let zoom = 1; // 1 = zoomed out, 4 = max zoom
+let moveX = 0;
+let moveY = 0;
 
-// --- SHOW THE MAP with the current zoom + drag ---
+function getFit() {
+  return Math.max(map.clientWidth / mapWidth, map.clientHeight / mapHeight);
+}
+
+function getStartZoom() {
+  const routeFit = Math.min(map.clientWidth / routeWidth, map.clientHeight / routeHeight);
+  return Math.min(4, Math.max(1, routeFit / getFit()));
+}
+
 function showMap() {
   if (!map || !mapContent) return;
 
-  // "fit" makes the drawing big enough to fill the map box
-  const fit = Math.max(1, map.clientWidth / DRAWING_W, map.clientHeight / DRAWING_H);
-  const scale = fit * zoom;
+  const scale = getFit() * zoom;
 
-  // don't let the map be dragged so far that empty space shows at the edges
-  const maxX = Math.max(0, (DRAWING_W * scale - map.clientWidth) / 2);
-  const maxY = Math.max(0, (DRAWING_H * scale - map.clientHeight) / 2);
+  // dont drag too far or you see the edge
+  const maxX = Math.max(0, (mapWidth * scale - map.clientWidth) / 2);
+  const maxY = Math.max(0, (mapHeight * scale - map.clientHeight) / 2);
   moveX = Math.min(maxX, Math.max(-maxX, moveX));
   moveY = Math.min(maxY, Math.max(-maxY, moveY));
 
-  mapContent.style.transform =
-    "translate(" + moveX + "px, " + moveY + "px) scale(" + scale + ")";
+  mapContent.style.transform = "translate(" + moveX + "px, " + moveY + "px) scale(" + scale + ")";
 
-  // grey out "−" when you can't zoom out more, "+" when you can't zoom in more
   const zoomOut = document.querySelector("#zoom-out");
   const zoomIn = document.querySelector("#zoom-in");
   if (zoomOut) zoomOut.disabled = zoom <= 1;
-  if (zoomIn) zoomIn.disabled = zoom >= 3;
+  if (zoomIn) zoomIn.disabled = zoom >= 4;
 }
 
-// zoom in or out, keeping the middle of what you see in the middle
 function changeZoom(newZoom) {
-  newZoom = Math.min(3, Math.max(1, newZoom));
+  newZoom = Math.min(4, Math.max(1, newZoom));
   moveX = moveX * newZoom / zoom;
   moveY = moveY * newZoom / zoom;
   zoom = newZoom;
   showMap();
 }
 
+// start with the whole route in view
+if (map && mapContent) {
+  zoom = getStartZoom();
+  mapContent.style.transition = "none";
+}
 showMap();
-window.addEventListener("resize", showMap);   // window bigger/smaller → fit again
+setTimeout(function () {
+  if (mapContent) mapContent.style.transition = "";
+}, 50);
+window.addEventListener("resize", showMap);
 
-// terug naar vorige pagina
-
-// --- BUTTONS (only on pages that have them) ---
+// zoom buttons
 const zoomInButton = document.querySelector("#zoom-in");
 const zoomOutButton = document.querySelector("#zoom-out");
 const recenterButton = document.querySelector("#recenter");
 
-// + : closer
 if (zoomInButton) {
   zoomInButton.addEventListener("click", function () {
     changeZoom(zoom + 0.5);
   });
 }
 
-// − : further away
 if (zoomOutButton) {
   zoomOutButton.addEventListener("click", function () {
     changeZoom(zoom - 0.5);
   });
 }
 
-// ◎ : back to normal size, "you are here" in the middle
+// back to start
 if (recenterButton) {
   recenterButton.addEventListener("click", function () {
-    zoom = 1;
+    zoom = getStartZoom();
     moveX = 0;
     moveY = 0;
     showMap();
   });
 }
 
-
-// --- MOUSE WHEEL = zoom ---
+// zoom with mouse wheel
 if (map) {
   map.addEventListener("wheel", function (event) {
-    event.preventDefault();                       // don't scroll the page
-    changeZoom(zoom + (event.deltaY < 0 ? 0.25 : -0.25));
+    event.preventDefault();
+    if (event.deltaY < 0) {
+      changeZoom(zoom + 0.25);
+    } else {
+      changeZoom(zoom - 0.25);
+    }
   }, { passive: false });
 }
 
-
-// --- DRAG THE MAP with the mouse (or a finger) ---
+// drag the map with the mouse
 let dragging = false;
-let dragged = false;   // true if the mouse really moved (then it is not a click)
+let dragged = false;
 let startX = 0;
 let startY = 0;
 
 if (map) {
   map.addEventListener("pointerdown", function (event) {
-    // buttons, the switch and the panel stay normal clicks
+    // dont drag when clicking a button
     if (event.target.closest("button, label, .toggle")) return;
     dragging = true;
     dragged = false;
@@ -125,7 +131,7 @@ if (map) {
     map.classList.remove("dragging");
   });
 
-  // after dragging, don't open the pin the mouse stopped on
+  // dont open a pin after dragging
   map.addEventListener("click", function (event) {
     if (dragged) {
       event.preventDefault();
@@ -134,16 +140,12 @@ if (map) {
     }
   }, true);
 
-  // stop the browser from dragging the map picture itself
   map.addEventListener("dragstart", function (event) {
     event.preventDefault();
   });
 }
 
-
-// --- BACK ---
-// Elements with class "go-back" return to the previous page.
-// If there is no previous page, the normal link (href) is used.
+// back to previous page
 document.querySelectorAll(".go-back").forEach(function (button) {
   button.addEventListener("click", function (event) {
     if (history.length > 1) {

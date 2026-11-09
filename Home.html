@@ -5,54 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Copenhagen Marathon</title>
   <link rel="stylesheet" href="css/style.css">
-<style>
-  body { margin: 0; }
-  #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
-</style>
 </head>
 <body class="home">
   <canvas id="bg"></canvas>
 
-    <header>
-      <div class="logo">
-        <img src="assets/Logo.png" alt="Logo">
-        <h2>Copenhagen Marathon</h2> <!--Part of logo, do not change-->
+  <header>
+    <a class="logo" href="Home.html">
+      <img src="assets/Logo.png" alt="Logo">
+      <h2>Copenhagen Marathon</h2> <!--Part of logo, do not change-->
+    </a>
+
+    <div class="info">
+      <div class="info-block">
+        <p class="label">Weather</p>
+        <p class="value">☀ <span id="weather">17°C</span></p>
       </div>
-
-      <div class="info">
-        <div class="info-block">
-          <p class="label">Weather</p>
-          <p class="value">☀ <span id="weather">17°C</span></p>
-        </div>
-        <div class="info-block">
-          <p class="label">Time left</p>
-          <p class="value" id="time-left">2h 30min</p>
-        </div>
+      <div class="info-block">
+        <p class="label">Time left</p>
+        <p class="value" id="time-left">2h 30min</p>
       </div>
-    </header>
-
-    <main class="hero">
-        <img class="hero__logo" src="assets/logo name.svg" alt="Copenhagen Marathon">
-
-      <div class="hero-actions">
-        <a class="button dark" href="Menu.html">
-         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Find location
-        </a>
-        <a class="button" href="all-locations.html">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          Open map
-        </a>
-      </div>
-    </main>
-
-    <div class="lang" role="group" aria-label="Language">
-      <button class="active" type="button" aria-pressed="true">EN</button>
-      <button type="button" aria-pressed="false">DA</button>
     </div>
+  </header>
 
+  <main class="hero">
+    <h1><img class="hero-logo" src="assets/logo-name.svg" alt="Copenhagen Marathon"></h1>
+
+    <div class="hero-buttons">
+      <a class="button dark" href="Menu.html"><img src="images/icon-pin-yellow.svg" alt=""> Find location</a>
+      <a class="button" href="all-locations.html"><img src="images/icon-pin.svg" alt=""> Open map</a>
+    </div>
+  </main>
+
+  <div class="lang">
+    <button class="active">EN</button>
+    <button>DA</button>
+  </div>
 
   <script src="js/header.js"></script>
-<script src="js/bg-animation.js"></script>
+  <script src="js/bg-animation.js"></script>
 </body>
 </html>
