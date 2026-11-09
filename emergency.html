@@ -62,22 +62,24 @@
 
       <div class="heading">
         <h1>First aid</h1>
-        <p>5 m left</p>
-      </div>
-
-      <div class="card">
-        <h2>Details</h2>
-        <p>Medical tent right next to you</p>
       </div>
 
       <div class="card emergency">
         <h2>In an emergency</h2>
         <p class="call"><span class="call-icon">☎</span> call <strong>112</strong></p>
-        <p>Use your own phone. Free, 24/7.<br>Not urgent? Medical helpline 1813.</p>
+        <p>Use your own phone and tell them where you are.<br>Your location is in the QR code below.</p>
       </div>
 
-      <div class="qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://copenhagenmarathon.dk" alt="QR code">
+      <!-- QR with this screen's location: read it out to the 112 operator -->
+      <!-- TODO: replace 55.6761,12.5683 with the real coordinates of this screen -->
+      <div class="card qr-card">
+        <div class="qr-caption">
+          <h2>Your location</h2>
+          <p class="qr-title">Scan for your exact location</p>
+        </div>
+        <div class="qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fmaps.google.com%2F%3Fq%3D55.6761%2C12.5683" alt="QR code with your location">
+        </div>
       </div>
     </aside>
   </main>
