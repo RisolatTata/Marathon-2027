@@ -6,19 +6,15 @@
   <title>Emergency - Copenhagen Marathon</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-  body { margin: 0; }
-  #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
-</style>
 </head>
 <body>
   <canvas id="bg"></canvas>
 <div class="screen">
   <header>
-    <div class="logo">
+    <a class="logo" href="Home.html">
       <img src="assets/Logo.png" alt="Logo">
       <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
-    </div>
+    </a>
 
     <div class="info">
       <div class="info-block">
@@ -29,11 +25,11 @@
         <p class="label">Time left</p>
         <p class="value" id="time-left">2h 30min</p>
       </div>
-      <a href="Home.html" class="home-button">⌂</a>
+      <a href="Home.html" class="home-button"><img src="images/icon-home.svg" alt="Home"></a>
     </div>
   </header>
   <main class="body">
-    <section class="map">
+    <div class="map">
       <div class="map-content">
         <img class="map-drawing" src="images/map-equipment.svg" alt="">
         <!-- dashed line: from you (420,350) to the first aid tent (590,335) -->
@@ -66,10 +62,10 @@
         <span class="switch"></span>
         Show all locations
       </label>
-    </section>
+    </div>
 
     <aside class="panel">
-      <a class="button back" href="firstaid-locations.html"><img src="images/icon-back.svg" alt=""> Back</a>
+      <a class="button back" href="Menu.html"><img src="images/icon-back.svg" alt=""> Back</a>
 
       <div class="heading">
         <h1>First aid</h1>
@@ -82,9 +78,9 @@
         <p>Use your own phone and tell them where you are.<br>Your location is in the QR code below.</p>
       </div>
 
-      <!-- QR with this screen's location -->
-      <!-- TODO: replace 55.6761,12.5683 with the real coordinates of this screen -->
-      <div class="qr-row">
+      <!-- qr with location for 112 -->
+      <!-- todo put in the real location -->
+      <div class="card qr-card">
         <div class="qr-caption">
           <p class="qr-title">Scan for your exact location</p>
           <p>Read it out to the 112 operator</p>
