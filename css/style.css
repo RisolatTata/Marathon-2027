@@ -1,4 +1,4 @@
-/* style voor alle paginas behalve home */
+/* style for all pages */
 
 :root {
   --dark: #2b0f3a;
@@ -12,7 +12,6 @@
   --orange: #e0a100;
   --red: #d62839;
   --border: rgba(43, 15, 58, 0.15);
-  --shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
 }
 
 * {
@@ -25,7 +24,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   color: var(--dark);
   background: var(--yellow) url("../assets/Background.png") center / cover;
-  overflow: hidden; /* geen scrollen */
+  overflow: hidden; /* no scrolling */
 }
 
 a {
@@ -41,6 +40,16 @@ img {
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* moving background behind everything (js/bg-animation.js) */
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 /* header */
@@ -119,7 +128,7 @@ header .home-button img {
   overflow: hidden;
 }
 
-/* kaart zelf staat in het midden, map.js zoomt dit */
+/* map drawing in the middle, map.js zooms this */
 .map-content {
   position: absolute;
   left: 50%;
@@ -136,7 +145,7 @@ header .home-button img {
   top: -100px;
 }
 
-/* gele stip = jij */
+/* yellow dot = you */
 .you {
   position: absolute;
   left: 401px;
@@ -174,7 +183,7 @@ header .home-button img {
   background: var(--dark);
   border: 3px solid var(--white);
   border-radius: 50%;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
   transition: transform 0.2s;
 }
 
@@ -185,10 +194,10 @@ a.pin:hover {
 .pin.big {
   width: 60px;
   height: 60px;
-  margin: -6px 0 0 -6px; /* zelfde midden als een kleine pin */
+  margin: -6px 0 0 -6px; /* same middle as a small pin */
 }
 
-/* letter bij de pin, zelfde als in de lijst (Station A, B, ...) */
+/* letter on the pin, same as in the list (Station A, B, ...) */
 .pin-name {
   position: absolute;
   right: -8px;
@@ -206,7 +215,7 @@ a.pin:hover {
   font-weight: 700;
 }
 
-/* plekken van de pins, allemaal vlak naast de looproute */
+/* pin positions, all next to the route */
 .water-1 {
   left: 472px;
   top: 253px;
@@ -248,18 +257,19 @@ a.pin:hover {
   top: 555px;
 }
 
-/* 1 ehbo tent, vlak bij de finish naast jou */
+/* first aid tent, near the finish */
 .aid-1 {
   left: 465px;
   top: 318px;
 }
 
+/* equipment between 20 and 30 km */
 .equipment-1 {
-  left: 375px;
-  top: 139px;
+  left: 610px;
+  top: 480px;
 }
 
-/* extra pins pas zien als show all locations aan staat */
+/* extra pins only show when show all locations is on */
 .pin.extra {
   display: none;
 }
@@ -268,10 +278,10 @@ a.pin:hover {
   display: flex;
 }
 
-/* you can grab the map with the mouse and move it (js/map.js) */
+/* drag the map */
 .map {
   cursor: grab;
-  touch-action: none;              /* on a touch screen: finger moves the map */
+  touch-action: none;
   user-select: none;
 }
 
@@ -280,10 +290,10 @@ a.pin:hover {
 }
 
 .map.dragging .map-content {
-  transition: none;                /* follow the mouse right away */
+  transition: none;
 }
 
-/* zoom buttons bottom right */
+/* zoom buttons */
 .zoom {
   position: absolute;
   right: 20px;
@@ -299,7 +309,7 @@ a.pin:hover {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
   font-family: "Inter", Arial, sans-serif;
   font-size: 26px;
   font-weight: 600;
@@ -307,14 +317,13 @@ a.pin:hover {
   cursor: pointer;
 }
 
-/* "+" or "−" can't be used any more → greyed out */
+/* grey when you cant zoom more */
 .zoom button:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-/* show all locations knop */
-/* "Show all locations" switch bottom left */
+/* show all locations button */
 .toggle {
   position: absolute;
   left: 20px;
@@ -327,7 +336,7 @@ a.pin:hover {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 2px 8px rgba(43, 15, 58, 0.12);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -366,7 +375,7 @@ input:checked + .switch::after {
   left: 16px;
 }
 
-/* rechterkant */
+/* right side */
 .panel {
   position: relative;
   width: 360px;
@@ -422,7 +431,7 @@ input:checked + .switch::after {
   color: var(--muted);
 }
 
-/* qr rechtsonder, schuift mee als de lijst langer wordt */
+/* qr bottom right */
 .qr {
   margin-top: auto;
   align-self: flex-end;
@@ -437,7 +446,7 @@ input:checked + .switch::after {
   height: 120px;
 }
 
-/* kleine schermen */
+/* small screens */
 @media (max-height: 700px) {
   .panel {
     gap: 14px;
@@ -577,18 +586,17 @@ input:checked + .switch::after {
   color: var(--muted);
 }
 
-/* QR card on the emergency screen: same look as the other cards,
-   pushed to the bottom of the panel */
+/* qr card on emergency */
 .qr-card {
-  margin-top: auto;            /* sticks the card to the bottom of the panel */
-  flex-direction: row;         /* text left, QR right */
+  margin-top: auto;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
 .qr-card .qr {
-  position: static;            /* inside the card, not floating in the corner */
+  position: static;
   flex-shrink: 0;
   padding: 8px;
   border: none;
@@ -610,91 +618,51 @@ input:checked + .switch::after {
   font-weight: 700;
   line-height: 1.3;
 }
-/* =========================================================
-   HOME PAGE
-   Add class="home" to <body> in Home.html so these styles
-   only affect the home page.
-   ========================================================= */
-
-.home .screen {
-  position: relative;
-}
-
-/* header: see-through so the background shows, no home button here */
+/* home page */
 .home header {
   background: rgba(251, 243, 214, 0.65);
-  backdrop-filter: blur(6px);
 }
 
-.home header .home-button {
-  display: none;
-}
-
-
-/* ---------- HERO: big logo + two buttons ---------- */
+/* logo and buttons */
 .hero {
-  flex: 1;
-  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(40px, 12vh, 110px);   /* shrinks on a low screen */
-  padding: 0 40px 60px;
-  margin-top: 80px;
+  gap: 90px;
+  padding: 0 40px;
+  margin-top: 110px;
 }
 
-.hero-logo {
-  width:50px;
-  height: auto;
-  justify-content: center;
-}
-
-.hero-actions {
+.hero-buttons {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   gap: 12px;
 }
 
-.hero-actions .button {
+.hero-buttons .button {
   min-width: 160px;
   justify-content: center;
   padding: 14px 22px;
   font-size: 16px;
-  transition: transform 0.2s;
 }
 
-.hero-actions .button:hover {
+.hero-buttons .button:hover {
   transform: translateY(-2px);
 }
 
-/* dark version of .button (Find location) */
+/* dark button */
 .button.dark {
   background: var(--dark);
-  border-color: var(--dark);
+  border-color: transparent;
   color: var(--yellow);
 }
 
-/* pin icon inside a button */
-.button svg {
+/* icon in button */
+.hero-buttons img {
   width: 16px;
   height: 16px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
-.button:focus-visible,
-.lang button:focus-visible {
-  outline: 3px solid var(--dark);
-  outline-offset: 3px;
-}
-
-
-/* ---------- LANGUAGE SWITCH (bottom left) ---------- */
+/* language button */
 .lang {
   position: absolute;
   left: 40px;
@@ -702,15 +670,17 @@ input:checked + .switch::after {
   display: flex;
   padding: 3px;
   background: rgba(255, 255, 255, 0.75);
-  border-radius: 999px;
+  border-radius: 20px;
 }
 
 .lang button {
   padding: 5px 12px;
   background: none;
-  border: 0;
-  border-radius: 999px;
-  font: 600 12px "Inter", Arial, sans-serif;
+  border: none;
+  border-radius: 20px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--dark);
   cursor: pointer;
 }
@@ -719,104 +689,86 @@ input:checked + .switch::after {
   background: var(--dark);
   color: var(--white);
 }
-/*Menu page*/
-
+/* menu */
 .menu-content {
   flex: 1;
-  min-height: 0;
   width: 100%;
-  max-width: 1094px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 56px 72px 40px;
 }
- 
+
 .menu-content h1 {
   font-size: 34px;
   font-weight: 400;
-  letter-spacing: -0.01em;
 }
- 
+
 .menu-sub {
   margin-top: 12px;
   font-size: 15px;
   color: var(--muted);
 }
- 
-/* 2 x 2 grid of options */
+
+/* 4 options */
 .options {
-  max-width: 1022px;
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px 22px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
- 
+
 .option {
   display: flex;
   align-items: center;
   gap: 18px;
-  min-height: 172px;
+  min-height: 170px;
   padding: 0 26px;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 24px;
-  transition: border-color 0.2s;
 }
- 
+
 .option:hover {
   border-color: var(--dark);
 }
- 
-.option:focus-visible {
-  outline: 3px solid var(--dark);
-  outline-offset: 3px;
-}
- 
-/* dark circle with yellow icon */
+
+/* circle with icon */
 .option-icon {
-  flex-shrink: 0;
-  width: 66px;
-  height: 66px;
+  width: 64px;
+  height: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--dark);
   border-radius: 50%;
 }
- 
-.option-icon svg {
+
+.option-icon img {
   width: 32px;
   height: 32px;
-  fill: none;
-  stroke: var(--yellow);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
- 
+
 .option-title {
-  display: block;
   font-size: 22px;
 }
- 
+
 .option-meta {
-  display: block;
   margin-top: 4px;
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--muted);
 }
- 
-/* small screens: body doesn't scroll, so make the cards shorter */
+
+/* low screens */
 @media (max-height: 700px) {
   .menu-content {
     padding-top: 32px;
   }
- 
+
   .options {
     margin-top: 24px;
     gap: 16px;
   }
- 
+
   .option {
     min-height: 130px;
   }
@@ -824,7 +776,7 @@ input:checked + .switch::after {
 
 
 
-/* gsm */
+/* phone */
 @media (max-width: 768px) {
   body {
     overflow: auto;
@@ -860,7 +812,7 @@ input:checked + .switch::after {
     font-size: 18px;
   }
 
-  /* map boven, info eronder */
+  /* map on top, info under it */
   .body {
     flex-direction: column;
     gap: 16px;
@@ -905,7 +857,7 @@ input:checked + .switch::after {
     font-size: 14px;
   }
 
-  /* qr heb je niet nodig als je al op je gsm zit */
+  /* no qr needed on a phone */
   .qr {
     display: none;
   }
@@ -916,7 +868,7 @@ input:checked + .switch::after {
     padding: 0 16px 80px;
   }
 
-  .hero__logo {
+  .hero-logo {
     max-width: 100%;
     height: auto;
   }

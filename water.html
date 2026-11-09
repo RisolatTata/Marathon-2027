@@ -6,19 +6,15 @@
   <title>Water station - Copenhagen Marathon</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-  body { margin: 0; }
-  #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
-</style>
 </head>
 <body>
     <canvas id="bg"></canvas>
 <div class="screen">
   <header>
-    <div class="logo">
+    <a class="logo" href="Home.html">
       <img src="assets/Logo.png" alt="Logo">
       <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
-    </div>
+    </a>
 
     <div class="info">
       <div class="info-block">
@@ -33,17 +29,17 @@
     </div>
   </header>
   <main class="body">
-    <section class="map">
+    <div class="map">
       <div class="map-content">
         <img class="map-drawing" src="images/map-equipment.svg" alt="">
         <div class="you"></div>
-        <!-- letter = name of the station in the list (A is the first one after the start) -->
+        <!-- letters same as in the list -->
         <div class="pin water-2"><img src="images/icon-droplet.svg" alt="Water station A"><span class="pin-name">A</span></div>
         <div class="pin water-3"><img src="images/icon-droplet.svg" alt="Water station B"><span class="pin-name">B</span></div>
         <div class="pin water-4"><img src="images/icon-droplet.svg" alt="Water station C"><span class="pin-name">C</span></div>
         <div class="pin big water-1"><img src="images/icon-droplet.svg" alt="Water station D"><span class="pin-name">D</span></div>
 
-        <!-- only visible when "Show all locations" is on -->
+        <!-- extra pins -->
         <a class="pin extra toilet-1" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
         <a class="pin extra toilet-2" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
         <a class="pin extra toilet-3" href="toilet.html"><img src="images/icon-toilet.svg" alt="Toilets"></a>
@@ -57,28 +53,28 @@
         <button id="recenter" title="Back to my location">◎</button>
       </div>
 
-      <!-- switch: ON = the other places appear on this map -->
+      <!-- show all locations -->
       <label class="toggle">
         <input type="checkbox">
         <span class="switch"></span>
         Show all locations
       </label>
-    </section>
+    </div>
 
     <aside class="panel">
       <a class="button back go-back" href="all-locations.html"><img src="images/icon-back.svg" alt=""> Back</a>
 
       <div class="heading">
         <h1>Water station</h1>
-        <p>1.6 km left</p>
+        <p>2 km left</p>
       </div>
 
       <div class="card">
         <h2>Wait time</h2>
-        <p class="stock-item">Station A (5.3 km) <span class="status available">~2 min</span></p>
-        <p class="stock-item">Station B (3.3 km) <span class="status low">~6 min</span></p>
-        <p class="stock-item">Station C (2.3 km) <span class="status available">~1 min</span></p>
-        <p class="stock-item">Station D (1.6 km) <span class="status out">~10 min</span></p>
+        <p class="stock-item">Station A (5 km) <span class="status available">~2 min</span></p>
+        <p class="stock-item">Station B (3 km) <span class="status low">~6 min</span></p>
+        <p class="stock-item">Station C (2 km) <span class="status available">~1 min</span></p>
+        <p class="stock-item">Station D (2 km) <span class="status out">~10 min</span></p>
       </div>
 
       <!-- QR -->

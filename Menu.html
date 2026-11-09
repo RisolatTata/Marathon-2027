@@ -6,19 +6,15 @@
   <title>Menu - Copenhagen Marathon</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-  body { margin: 0; }
-  #bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
-</style>
 </head>
 <body class="menu">
   <canvas id="bg"></canvas>
 <div class="screen">
   <header>
-    <div class="logo">
+    <a class="logo" href="Home.html">
       <img src="assets/Logo.png" alt="Logo">
       <h2>Copenhagen Marathon</h2> <!-- This is part of the logo don't change -->
-    </div>
+    </a>
 
 
     <div class="info">
@@ -35,54 +31,43 @@
   </header>
 
   <main class="menu-content">
-      <h1>What do you need?</h1>
-      <p class="menu-sub">Pick one and we show the nearest spot.</p>
- 
-      <div class="options">
-        <a class="option" href="water.html">
-          <span class="option-icon">
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5c-4 5.5-7 9.2-7 13a7 7 0 0 0 14 0c0-3.8-3-7.5-7-13z"/></svg>
-          </span>
-          <span>
-            <p class="option-title">Water station</p>
-            <p class="option-meta">1.6 km away</p>
-          </span>
-        </a>
- 
-        <a class="option" href="toilet.html">
-          <span class="option-icon">
-            <svg viewBox="0 0 32 32" aria-hidden="true">
-              <circle cx="10" cy="9" r="2"/><path d="M7.5 14h5v6H11v6H9v-6H7.5z"/>
-              <circle cx="22" cy="9" r="2"/><path d="M22 13l-4.5 13h9z"/>
-            </svg>
-          </span>
-          <span>
-            <p class="option-title">Toilets</p>
-            <p class="option-meta">1.1 km away</p>
-          </span>
-        </a>
- 
-        <a class="option" href="equipment.html">
-          <span class="option-icon">
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 11v10h22v-3.5c0-1.5-1-2.5-2.5-3L19 12.5 17 10l-3 1.5L11 9z"/><path d="M5 21h22M14 14l2 1.5M17 15.5l2 1.5"/></svg>
-          </span>
-          <span>
-            <p class="option-title">Equipment</p>
-            <p class="option-meta">3 km away · see what’s in stock</p>
-          </span>
-        </a>
- 
-        <a class="option" href="emergency.html">
-          <span class="option-icon">
-            <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="10" width="22" height="15" rx="3"/><path d="M12 10V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M16 14.5v6M13 17.5h6"/></svg>
-          </span>
-          <span>
-            <p class="option-title">First aid</p>
-            <p class="option-meta">5 m away · send your location to medics</p>
-          </span>
-        </a>
-      </div>
-    </main>
+    <h1>What do you need?</h1>
+    <p class="menu-sub">Pick one and we show the nearest spot.</p>
+
+    <div class="options">
+      <a class="option" href="water.html">
+        <div class="option-icon"><img src="images/icon-droplet.svg" alt=""></div>
+        <div>
+          <p class="option-title">Water station</p>
+          <p class="option-meta">2 km away</p>
+        </div>
+      </a>
+
+      <a class="option" href="toilet.html">
+        <div class="option-icon"><img src="images/icon-toilet.svg" alt=""></div>
+        <div>
+          <p class="option-title">Toilets</p>
+          <p class="option-meta">1 km away</p>
+        </div>
+      </a>
+
+      <a class="option" href="equipment.html">
+        <div class="option-icon"><img src="images/icon-shoe.svg" alt=""></div>
+        <div>
+          <p class="option-title">Equipment</p>
+          <p class="option-meta">5 km away - see what's in stock</p>
+        </div>
+      </a>
+
+      <a class="option" href="emergency.html">
+        <div class="option-icon"><img src="images/icon-aid.svg" alt=""></div>
+        <div>
+          <p class="option-title">First aid</p>
+          <p class="option-meta">1 km away - send your location to medics</p>
+        </div>
+      </a>
+    </div>
+  </main>
 </div>
 <script src="js/header.js"></script>
 <script src="js/bg-animation.js"></script>
