@@ -91,7 +91,7 @@ header .value {
   font-weight: 700;
 }
 
-#header .home-button {
+header .home-button {
   width: 44px;
   height: 44px;
   display: flex;
@@ -100,29 +100,11 @@ header .value {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 12px;
-  font-size: 20px;
-  font-weight: 600;
-}
-.home-button {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
 }
 
-.home-button img {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-/* Bigger */
-.home-button img {
-  width: 40px;
-  height: 40px;
-}
-
-/* Slightly bolder look */
-.home-button img {
-  filter: drop-shadow(0 0 0.5px #000) drop-shadow(0 0 0.5px #000);
+header .home-button img {
+  width: 24px;
+  height: 24px;
 }
 
 
@@ -613,11 +595,11 @@ input:checked + .switch::after {
 /* emergency screen: the medical tent further ahead (Figma: first aid 3 km) */
 .pin.aid-far {
   left: 560px;
-  top: 305px;
-  margin: 0;                   /* 60x60 pin, centre at 590,335 */
+  top: 278px;
+  margin: 0;                   /* 60x60 pin, centre at 590,308 (on the street) */
 }
 
-/* dashed line from you to the tent, drawn in map coordinates */
+/* dotted line from you to the tent, drawn in map coordinates */
 .route-dash {
   position: absolute;
   left: 0;
@@ -626,10 +608,11 @@ input:checked + .switch::after {
   pointer-events: none;
 }
 
+/* dash of 0 with a round end makes a dot */
 .route-dash line {
   stroke: var(--dark);
-  stroke-width: 3;
-  stroke-dasharray: 6 8;
+  stroke-width: 6;
+  stroke-dasharray: 0 12;
   stroke-linecap: round;
 }
 
