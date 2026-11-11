@@ -681,7 +681,7 @@ input:checked + .switch::after {
 .button.dark {
   background: var(--dark);
   border-color: transparent;
-  color: var(--yellow);
+  color: var(--white);
 }
 
 /* icon in button */
@@ -723,17 +723,6 @@ input:checked + .switch::after {
   max-width: 1100px;
   margin: 0 auto;
   padding: 56px 72px 40px;
-}
-
-.menu-content h1 {
-  font-size: 34px;
-  font-weight: 400;
-}
-
-.menu-sub {
-  margin-top: 12px;
-  font-size: 15px;
-  color: var(--muted);
 }
 
 /* 4 options */
@@ -908,10 +897,6 @@ input:checked + .switch::after {
   /* menu */
   .menu-content {
     padding: 24px 16px;
-  }
-
-  .menu-content h1 {
-    font-size: 26px;
   }
 
   .options {
