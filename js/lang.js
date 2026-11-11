@@ -92,6 +92,7 @@ function saveLang(lang) {
 // 4. Translate the whole page
 function translatePage(lang) {
   document.documentElement.lang = lang;
+  document.documentElement.setAttribute("translate", "no"); // Chrome must not translate on top of us
 
   // all texts on the page
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
