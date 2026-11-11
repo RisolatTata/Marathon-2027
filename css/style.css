@@ -592,11 +592,11 @@ input:checked + .switch::after {
   color: var(--muted);
 }
 
-/* emergency screen: the medical tent further ahead (Figma: first aid 3 km) */
+/* first aid tent further on the route */
 .pin.aid-far {
   left: 560px;
   top: 278px;
-  margin: 0;                   /* 60x60 pin, centre at 590,308 (on the street) */
+  margin: 0;
 }
 
 /* dotted line from you to the tent, drawn in map coordinates */
@@ -690,8 +690,7 @@ input:checked + .switch::after {
   height: 16px;
 }
 
-/* language button */
-/* language switch EN / DK (added by js/lang.js) */
+/* language button EN / DK (made in js/lang.js) */
 .lang-switch {
   display: flex;
   padding: 3px;
@@ -887,11 +886,6 @@ input:checked + .switch::after {
   .hero-logo {
     max-width: 100%;
     height: auto;
-  }
-
-  .lang {
-    left: 16px;
-    bottom: 20px;
   }
 
   /* menu */

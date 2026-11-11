@@ -1,6 +1,5 @@
-/* Apple Watch pages (watch*.html)
-   On a computer the watch is drawn big in the middle of the page.
-   On a real watch (small screen) the screen fills the whole display. */
+/* style for the apple watch pages */
+/* on a computer we draw a big watch, on a real watch the screen is full */
 
 :root {
   --dark: #2b0f3a;
@@ -35,7 +34,7 @@ a {
   text-decoration: none;
 }
 
-/* ---------- watch case ---------- */
+/* watch case */
 .watch {
   position: relative;
   padding: 14px;
@@ -100,7 +99,7 @@ a {
   }
 }
 
-/* ---------- top bar ---------- */
+/* top bar */
 .watch-top {
   position: absolute;
   z-index: 3;
@@ -146,7 +145,7 @@ a {
   font-size: 15px;
 }
 
-/* ---------- lists ---------- */
+/* lists */
 .watch-list {
   position: absolute;
   top: 48px;
@@ -221,9 +220,17 @@ a {
   border-radius: 50%;
 }
 
-.status.available { color: var(--green); }
-.status.low { color: var(--amber); }
-.status.out { color: var(--red); }
+.status.available {
+  color: var(--green);
+}
+
+.status.low {
+  color: var(--amber);
+}
+
+.status.out {
+  color: var(--red);
+}
 
 .watch-note {
   min-height: 34px;
@@ -231,7 +238,7 @@ a {
   color: var(--muted);
 }
 
-/* ---------- map ---------- */
+/* map */
 .watch-map {
   position: absolute;
   inset: 0;
@@ -239,8 +246,8 @@ a {
   background: var(--map);
 }
 
-/* same map as on the big screen, made smaller.
-   left/top = middle of the watch, the transform on each page = how far we zoom and what part we look at */
+/* same map as on the big screen but smaller */
+/* the zoom is in the style on each watch page */
 .watch-map .map-content {
   position: absolute;
   left: 50%;
@@ -286,10 +293,25 @@ a {
 }
 
 /* same pin places as on the big screen */
-.water-1 { left: 472px; top: 253px; }
-.toilet-1 { left: 361px; top: 226px; }
-.equipment-1 { left: 610px; top: 480px; }
-.aid-far { left: 560px; top: 278px; }
+.water-1 {
+  left: 472px;
+  top: 253px;
+}
+
+.toilet-1 {
+  left: 361px;
+  top: 226px;
+}
+
+.equipment-1 {
+  left: 610px;
+  top: 480px;
+}
+
+.aid-far {
+  left: 560px;
+  top: 278px;
+}
 
 .route-dash {
   position: absolute;
@@ -348,7 +370,7 @@ a {
   color: var(--yellow);
 }
 
-/* ---------- buttons ---------- */
+/* buttons */
 .watch-button {
   position: absolute;
   z-index: 3;
@@ -385,7 +407,7 @@ a {
   color: var(--dark);
 }
 
-/* ---------- your location (112) ---------- */
+/* your location (112) */
 .watch-center {
   position: absolute;
   top: 44px;

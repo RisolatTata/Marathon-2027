@@ -1,10 +1,8 @@
-// Language switch EN / DK
-// The pages are written in English. When DK is picked, this script
-// finds every text on the page and swaps it for the Danish version below.
-// The choice is saved, so it stays when you go to another page.
+// language switch EN / DK
+// the pages are in english, when you click DK we change every text to danish
+// the choice is saved so the next page is in the same language
 
-// 1. Danish words — the English text on the left, Danish on the right.
-//    New text on a page? Add one line here.
+// english text and the danish text
 const danish = {
   // header
   "Weather": "Vejr",
@@ -72,101 +70,128 @@ const danish = {
   "Open on Apple Watch": "Åbn på Apple Watch"
 };
 
-// 2. Texts with a number or letter inside ("2 km left", "Station A (5 km)")
-const danishPatterns = [
-  [/^(.+) away · see what’s in stock$/, "$1 væk · se hvad der er på lager"],
-  [/^(.+) away · send your location to medics$/, "$1 væk · send din placering til samaritterne"],
-  [/^(.+) away$/, "$1 væk"],
-  [/^(.+) left$/, "$1 tilbage"],
-  [/^Station (\w+) \((.+)\)$/, "Depot $1 ($2)"],
-  [/^Water station (\w+)$/, "Vanddepot $1"],
-  [/^Station (\w+) · (.+)$/, "Depot $1 · $2"]
+// parts of a text, for texts with a number in it like "2 km left" or "Station A (5 km)"
+const danishParts = [
+  ["see what’s in stock", "se hvad der er på lager"],
+  ["send your location to medics", "send din placering til samaritterne"],
+  ["Water station", "Vanddepot"],
+  ["Station", "Depot"],
+  ["away", "væk"],
+  ["left", "tilbage"]
 ];
 
 function toDanish(english) {
-  if (danish[english]) return danish[english];
-
-  // page title, e.g. "Toilets - Copenhagen Marathon"
-  const title = english.match(/^(.+) - Copenhagen Marathon$/);
-  if (title && danish[title[1]]) return danish[title[1]] + " - Copenhagen Marathon";
-
-  for (const [pattern, result] of danishPatterns) {
-    if (pattern.test(english)) return english.replace(pattern, result);
+  // the whole text is in the list
+  if (danish[english]) {
+    return danish[english];
   }
-  return english; // no translation → keep English
+
+  // page title like "Toilets - Copenhagen Marathon"
+  const parts = english.split(" - ");
+  if (parts.length == 2 && danish[parts[0]]) {
+    return danish[parts[0]] + " - " + parts[1];
+  }
+
+  // change the parts we know
+  let text = english;
+  danishParts.forEach(function (part) {
+    text = text.replace(part[0], part[1]);
+  });
+  return text;
 }
 
-// 3. Saved choice ("en" or "da")
-function getLang() {
-  try { return localStorage.getItem("lang") || "en"; } catch (e) { return "en"; }
-}
-function saveLang(lang) {
-  try { localStorage.setItem("lang", lang); } catch (e) {}
+function translateText(english, lang) {
+  if (lang == "da") {
+    return toDanish(english);
+  }
+  return english;
 }
 
-// 4. Translate the whole page
+// alt, title and aria-label are texts you dont see but still need to change
+function translateAttribute(attribute, lang) {
+  document.querySelectorAll("[" + attribute + "]").forEach(function (element) {
+    // save the english text the first time
+    if (!element.hasAttribute("data-en-" + attribute)) {
+      element.setAttribute("data-en-" + attribute, element.getAttribute(attribute));
+    }
+
+    const english = element.getAttribute("data-en-" + attribute);
+    if (english != "") {
+      element.setAttribute(attribute, translateText(english, lang));
+    }
+  });
+}
+
 function translatePage(lang) {
   document.documentElement.lang = lang;
-  document.documentElement.setAttribute("translate", "no"); // Chrome must not translate on top of us
 
   // all texts on the page
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  let node;
-  while ((node = walker.nextNode())) {
-    const parent = node.parentElement;
-    if (!parent || parent.closest("script, style, #time-left, #weather, .lang-switch")) continue;
+  document.querySelectorAll("body *").forEach(function (element) {
+    // dont change the timer, the weather and the EN / DK buttons
+    if (element.closest("script, #time-left, #weather, .lang-switch")) {
+      return;
+    }
 
-    if (node.english === undefined) node.english = node.textContent; // remember English once
-    const text = node.english.trim();
-    if (!text) continue;
+    element.childNodes.forEach(function (node) {
+      // only the text, not other elements
+      if (node.nodeType != 3) {
+        return;
+      }
 
-    const newText = lang === "da" ? toDanish(text) : text;
-    node.textContent = node.english.replace(text, newText);
-  }
+      // save the english text the first time
+      if (node.english == undefined) {
+        node.english = node.textContent;
+      }
 
-  // hidden texts: alt, title, aria-label
-  document.querySelectorAll("[alt], [title], [aria-label]").forEach(function (el) {
-    ["alt", "title", "aria-label"].forEach(function (attr) {
-      if (!el.hasAttribute(attr) || !el.getAttribute(attr)) return;
-      const key = "en" + attr.replace("-", ""); // "aria-label" → "enarialabel"
-      if (el.dataset[key] === undefined) el.dataset[key] = el.getAttribute(attr);
-      const english = el.dataset[key];
-      el.setAttribute(attr, lang === "da" ? toDanish(english) : english);
+      const english = node.english.trim();
+      if (english != "") {
+        node.textContent = node.english.replace(english, translateText(english, lang));
+      }
     });
   });
 
-  // browser tab title
-  if (document.englishTitle === undefined) document.englishTitle = document.title;
-  document.title = lang === "da" ? toDanish(document.englishTitle) : document.englishTitle;
+  translateAttribute("alt", lang);
+  translateAttribute("title", lang);
+  translateAttribute("aria-label", lang);
 
-  // which button looks active
+  // text in the browser tab
+  if (document.englishTitle == undefined) {
+    document.englishTitle = document.title;
+  }
+  document.title = translateText(document.englishTitle, lang);
+
+  // make the clicked button dark
   document.querySelectorAll(".lang-switch button").forEach(function (button) {
-    button.classList.toggle("active", button.dataset.lang === lang);
+    if (button.dataset.lang == lang) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
   });
 }
 
-// 5. Put the EN / DK buttons into the header on every page
+// put the EN / DK buttons in the header
 function addSwitch() {
   const info = document.querySelector("header .info");
-  if (!info) return;
+  if (!info) {
+    return;
+  }
 
   const box = document.createElement("div");
   box.className = "lang-switch";
-  box.innerHTML =
-    '<button type="button" data-lang="en">EN</button>' +
-    '<button type="button" data-lang="da">DK</button>';
+  box.innerHTML = '<button type="button" data-lang="en">EN</button><button type="button" data-lang="da">DK</button>';
 
-  // before the home button, or at the end if the page has none
+  // before the home button (home page has no home button so then it goes at the end)
   const home = info.querySelector(".home-button");
   info.insertBefore(box, home);
 
-  box.addEventListener("click", function (event) {
-    const button = event.target.closest("button");
-    if (!button) return;
-    saveLang(button.dataset.lang);
-    translatePage(button.dataset.lang);
+  box.querySelectorAll("button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      localStorage.setItem("lang", button.dataset.lang);
+      translatePage(button.dataset.lang);
+    });
   });
 }
 
 addSwitch();
-translatePage(getLang());
+translatePage(localStorage.getItem("lang") || "en");
