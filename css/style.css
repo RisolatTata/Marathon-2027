@@ -691,29 +691,28 @@ input:checked + .switch::after {
 }
 
 /* language button */
-.lang {
-  position: absolute;
-  left: 40px;
-  bottom: 36px;
+/* language switch EN / DK (added by js/lang.js) */
+.lang-switch {
   display: flex;
   padding: 3px;
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 20px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-.lang button {
-  padding: 5px 12px;
+.lang-switch button {
+  padding: 8px 12px;
   background: none;
   border: none;
-  border-radius: 20px;
+  border-radius: 9px;
   font-family: "Inter", Arial, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--dark);
   cursor: pointer;
 }
 
-.lang button.active {
+.lang-switch button.active {
   background: var(--dark);
   color: var(--white);
 }
