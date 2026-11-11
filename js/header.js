@@ -17,7 +17,7 @@ function showTimeLeft() {
   const minutes = Math.floor(secondsLeft % 3600 / 60);
   const seconds = secondsLeft % 60;
 
-  document.querySelector("#time-left").textContent = hours + "h " + minutes + "min " + seconds + "s";
+  document.querySelector("#time-left").textContent = hours + (document.documentElement.lang === "da" ? "t " : "h ") + minutes + "min " + seconds + "s";
 
   if (secondsLeft > 0) {
     secondsLeft = secondsLeft - 1;
