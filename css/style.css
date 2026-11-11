@@ -681,7 +681,7 @@ input:checked + .switch::after {
 .button.dark {
   background: var(--dark);
   border-color: transparent;
-  color: var(--yellow);
+  color: var(--white);
 }
 
 /* icon in button */
