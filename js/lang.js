@@ -55,7 +55,21 @@ const danish = {
   "Your location is in the QR code below.": "Din placering står i QR-koden nedenfor.",
   "Scan for your exact location": "Scan for din præcise placering",
   "Read it out to the 112 operator": "Læs den op for 112-operatøren",
-  "QR code with your location": "QR-kode med din placering"
+  "QR code with your location": "QR-kode med din placering",
+
+  // watch
+  "Water": "Vand",
+  "left": "tilbage",
+  "In stock": "På lager",
+  "Yes": "Ja",
+  "Low": "Få",
+  "Out": "Udsolgt",
+  "See what’s in stock": "Se hvad der er på lager",
+  "Call 112": "Ring 112",
+  "Your location": "Din placering",
+  "Read it to the 112 operator": "Læs den op for 112-operatøren",
+  "Done": "Færdig",
+  "Open on Apple Watch": "Åbn på Apple Watch"
 };
 
 // 2. Texts with a number or letter inside ("2 km left", "Station A (5 km)")
@@ -65,7 +79,8 @@ const danishPatterns = [
   [/^(.+) away$/, "$1 væk"],
   [/^(.+) left$/, "$1 tilbage"],
   [/^Station (\w+) \((.+)\)$/, "Depot $1 ($2)"],
-  [/^Water station (\w+)$/, "Vanddepot $1"]
+  [/^Water station (\w+)$/, "Vanddepot $1"],
+  [/^Station (\w+) · (.+)$/, "Depot $1 · $2"]
 ];
 
 function toDanish(english) {
@@ -113,7 +128,7 @@ function translatePage(lang) {
   document.querySelectorAll("[alt], [title], [aria-label]").forEach(function (el) {
     ["alt", "title", "aria-label"].forEach(function (attr) {
       if (!el.hasAttribute(attr) || !el.getAttribute(attr)) return;
-      const key = "en" + attr;
+      const key = "en" + attr.replace("-", ""); // "aria-label" → "enarialabel"
       if (el.dataset[key] === undefined) el.dataset[key] = el.getAttribute(attr);
       const english = el.dataset[key];
       el.setAttribute(attr, lang === "da" ? toDanish(english) : english);
