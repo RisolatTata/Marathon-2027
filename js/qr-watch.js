@@ -7,18 +7,17 @@ const watchPages = {
   "emergency.html": "watch-location.html"
 };
 
-// the site online (GitHub Pages). Used when the page is opened from your computer,
-// because a phone/watch can't open a file or "localhost" on your laptop.
-const onlineSite = "https://risolattata.github.io/Marathon-2027/";
+// the Apple Watch pages are online here (public GitHub Pages site).
+// The group repo is private, so the watch pages live in a separate public repo:
+// github.com/Tania-coder/marathon-watch
+const onlineSite = "https://tania-coder.github.io/marathon-watch/";
 
 const thisPage = decodeURIComponent(location.pathname.split("/").pop());
 const watchPage = watchPages[thisPage];
 const qrImage = document.querySelector(".qr img");
 
 if (watchPage && qrImage) {
-  const isOnline = location.protocol.startsWith("http") &&
-    location.hostname !== "localhost" && location.hostname !== "127.0.0.1";
-  const watchUrl = new URL(watchPage, isOnline ? location.href : onlineSite).href;
+  const watchUrl = onlineSite + watchPage;
 
   qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=" + encodeURIComponent(watchUrl);
 
